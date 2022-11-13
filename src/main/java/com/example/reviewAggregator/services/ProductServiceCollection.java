@@ -2,19 +2,18 @@ package com.example.reviewAggregator.services;
 
 import com.example.reviewAggregator.models.Product;
 import com.example.reviewAggregator.models.ProductType;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
 public class ProductServiceCollection implements ProductService{
     private List<Product> products = new ArrayList<>();
     public ProductServiceCollection() {
-        products.add(new Product(1,"Star Wars", "Description", ProductType.SERIES));
-        products.add(new Product(2,"Queen - Bohemian Rhapsody", "Description", ProductType.MUSIC));
-        products.add(new Product(3,"Cyberpunk", "Description", ProductType.GAME));
+        products.add(new Product(1,"Star Wars: The Clone Wars", "Description", ProductType.SERIES));
+        products.add(new Product(2,"Attack on Titan", "Description", ProductType.ANIME));
+        products.add(new Product(3,"Queen - Bohemian Rhapsody", "Description", ProductType.MUSIC));
+        products.add(new Product(4,"Cyberpunk", "Description", ProductType.GAME));
     }
     @Override
     public List<Product> getProducts() throws Exception {
