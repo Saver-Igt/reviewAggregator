@@ -22,12 +22,11 @@
                 <img src="images/logo1.png" class="graficlogo" alt="brand" width="60" height="60"/>
             </a>
         </div>
-        <nav class="topnav" id="myTopNav">
+        <nav class="topnav">
             <ul>
                 <li><a href="#">Категории</a></li>
                 <li><a href="#">Лучшие игры</a></li>
                 <li><a href="#">FAQ</a></li>
-                
             </ul>
         </nav>
         <div class="right_panel">
@@ -41,31 +40,41 @@
         </div>
     </header>
     <main>
-        <section>
+        <section class="popular">
             <h2>Популярное</h2>
-            <article>
-                <div id="app">
-                    <router-view></router-view>
-                </div>  
+            <article id="app">
+                <router-view></router-view>
             </article>
         </section>
         <section>
             <h2>Лучшее</h2>
+            <article id="app">
+                
+            </article>
         </section>
         <section>
             <h2>Популярные игры</h2>
+            <article id="popular">
+
+            </article>
         </section>
         <section>
-            <h2>Популярная музыка</h2>
+            <h2>Экшен игры</h2>
         </section>
         <section>
-            <h2>Популярные аниме</h2>
+            <h2>Приключения</h2>
         </section>
         <section>
-            <h2>Популярные сериалы</h2>
+            <h2>Стратегии</h2>
         </section>
         <section>
-            <h2>Популярное кино</h2>
+            <h2>Симуляторы</h2>
+        </section>
+        <section>
+            <h2>Головоломки</h2>
+        </section>
+        <section>
+            <h2>RPG</h2>
         </section>
     </main>
     <footer>
@@ -83,5 +92,6 @@
         <div>Sawer</div>
     </footer>
 <script src="js/main.js"></script>
+
 </body>
 </html>

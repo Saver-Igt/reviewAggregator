@@ -3,33 +3,31 @@ package com.example.reviewAggregator.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name="products")
-public class Product {
+@Table(name="games")
+public class Game {
     @Id
+
     private int id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
     private String description;
-    @Enumerated(EnumType.STRING)
-    private ProductType type;
     @Column(name = "avg_rate")
     private float avgRate;
+    @Column(name = "icon_url")
+    private String iconURL;
 
-    public Product(){}
-
-    public Product(int id, String name, String description, ProductType type){
+    public Game(){}
+    public Game(int id, String name, String description){
         this.id = id;
         this.name = name;
         this.description = description;
-        this.type = type;
     }
-
-    public ProductType getType() {
-        return type;
+    public String getIconURL() {
+        return iconURL;
     }
-    public void setType(ProductType type) {
-        this.type = type;
+    public void setIconURL(String iconURL) {
+        this.iconURL = iconURL;
     }
     public String getName() {
         return name;

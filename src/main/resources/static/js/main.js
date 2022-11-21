@@ -1,13 +1,16 @@
-productsComponent = {
+gamesComponent = {
   template: `<div v-if="loading">Loading...</div>
         <div v-else>
           <div class="table">
-            <div class = "row" v-for="product in products">
-              <div class = "r-1" >
-                {{ product.name}}
+            <div class = "row" v-for="game in games">
+              <div class = "icon">
+                <img :src="game.iconURL" width="200" height="200" />
               </div>
-              <div class = "r-2">
-                {{ product.description}}
+              <div class = "name">
+                {{ game.name}}
+              </div>
+              <div class = "rating">
+                {{ game.avgRate}}
               </div>
             </div>
           </div>
@@ -15,19 +18,19 @@ productsComponent = {
   data() {
     return {
         loading: true,
-        products: null
+        games: null
     };
   },
   mounted() {
     axios
-      .get('http://localhost:8080/products', {mode: 'no-cors'})
-      .then(response => (this.products = response.data))
+      .get('http://localhost:8080/games', {mode: 'no-cors'})
+      .then(response => (this.games = response.data))
       .finally(() => this.loading = false);
   }
 };
 const routes = [
-  {path: '/', component: productsComponent},
-  {path: '/products', component: productsComponent},
+  {path: '/', component: gamesComponent},
+  {path: '/games', component: gamesComponent},
 ]
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),

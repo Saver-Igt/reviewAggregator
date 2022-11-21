@@ -1,3 +1,6 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
 header{
     width: 100%;
     background: #000;
@@ -89,10 +92,18 @@ header input:focus {
     background-color: #fff;
     border: 2px solid #3115d2;
 }
-/*---------------------------*/
-
-body{
-    font-family: 'Montserrat', sans-serif;
+main{
+    background-color: rgb(24, 21, 21);
+    
+    color: #fff;
 }
-
-
+section h2{
+    padding: 15px 10px 25px;
+    font-size: 26px;
+    font-weight: 500;
+}
+.row{
+    padding: 10px 10px 10px 10px;
+    font-size: 20px;
+    display: inline-block;
+}
