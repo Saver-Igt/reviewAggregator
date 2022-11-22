@@ -1,3 +1,4 @@
+const app = Vue.createApp({})
 gamesComponent = {
   template: `<div v-if="loading">Loading...</div>
         <div v-else>
@@ -36,8 +37,14 @@ const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
   routes,
 })
-
-const app = Vue.createApp({})
+app.component('button-counter', {
+  data: function () {
+    return {
+      count: 0
+    }
+  },
+  template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+})
 
 app.use(router)
 app.mount('#app')

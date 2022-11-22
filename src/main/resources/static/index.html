@@ -39,42 +39,34 @@
             <a href="#" class="btns_signin">Войти</a>
         </div>
     </header>
-    <main>
-        <section class="popular">
-            <h2>Популярное</h2>
-            <article id="app">
-                <router-view></router-view>
-            </article>
-        </section>
+    <main id="app">
         <section>
             <h2>Лучшее</h2>
-            <article id="app">
-                
-            </article>
-        </section>
-        <section>
-            <h2>Популярные игры</h2>
-            <article id="popular">
-
-            </article>
+            <router-view></router-view>
         </section>
         <section>
             <h2>Экшен игры</h2>
+            <button-counter></button-counter>
         </section>
         <section>
             <h2>Приключения</h2>
+            <router-view></router-view>
         </section>
         <section>
             <h2>Стратегии</h2>
+            <router-view></router-view>
         </section>
         <section>
             <h2>Симуляторы</h2>
+            <router-view></router-view>
         </section>
         <section>
             <h2>Головоломки</h2>
+            <router-view></router-view>
         </section>
         <section>
             <h2>RPG</h2>
+            <router-view></router-view>
         </section>
     </main>
     <footer>
@@ -92,6 +84,5 @@
         <div>Sawer</div>
     </footer>
 <script src="js/main.js"></script>
-
 </body>
 </html>
