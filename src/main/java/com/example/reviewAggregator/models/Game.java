@@ -6,7 +6,6 @@ import javax.persistence.*;
 @Table(name="games")
 public class Game {
     @Id
-
     private int id;
     @Column(name = "name")
     private String name;

@@ -27,7 +27,7 @@ public class GamesController {
     }
     @PostMapping
     public @ResponseBody
-    Game addPGame(@RequestBody Game game) throws Exception{
+    Game addGame(@RequestBody Game game) throws Exception{
         return gameService.addGame(game);
     }
     @PutMapping("/{id}")
