@@ -7,8 +7,8 @@ mvnw.cmd
 !**/src/main/**/target/
 !**/src/test/**/target/
 .DS_Store
-/node_modules
-/dist
+src/frontend/node_modules
+src/frontend/dist
 .jpb
 
 # local env files
