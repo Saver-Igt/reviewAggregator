@@ -1,136 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>de.saver</groupId>
+	<artifactId>reviewAggregator</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<name>ReviewAggregator</name>
+	<description>Pet project for Spring Boot and Vue.js</description>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.0.0</version>
-		<relativePath/>
+		<version>2.7.5</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>dev.siraev</groupId>
-	<artifactId>reviewAggregator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>ReviewAggregator</name>
-	<description>Demo project for Spring Boot</description>
-
 	<properties>
-		<java.version>11</java.version>
-		<node.version>v18.12.1</node.version>
-		<npm.version>8.19.2</npm.version>
+		<main.basedir>${project.basedir}</main.basedir>
 	</properties>
-	<dependencies>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>3.0.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-			<version>42.5.1</version>
-		</dependency>
-	</dependencies>
+	<modules>
+		<module>frontend</module>
+		<module>backend</module>
+	</modules>
 
 	<build>
 		<plugins>
 
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-
-			<plugin>
-				<groupId>com.github.eirslett</groupId>
-				<artifactId>frontend-maven-plugin</artifactId>
-				<version>1.7.6</version>
-
-				<executions>
-					<execution>
-						<id>Install node and npm</id>
-						<goals>
-							<goal>install-node-and-npm</goal>
-						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<nodeVersion>${node.version}</nodeVersion>
-							<npmVersion>${npm.version}</npmVersion>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>npm install</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<arguments>install</arguments>
-						</configuration>
-					</execution>
-
-					<execution>
-						<id>npm build</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<phase>generate-resources</phase>
-						<configuration>
-							<arguments>run build</arguments>
-						</configuration>
-					</execution>
-				</executions>
-
-				<configuration>
-					<nodeVersion>${node.version}</nodeVersion>
-					<workingDirectory>src/frontend</workingDirectory>
-				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>Copy Vue frontend into Spring Boot target static folder</id>
-						<phase>process-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>target/classes/static</outputDirectory>
-							<resources>
-								<resource>
-									<directory>src/frontend/dist</directory>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 		</plugins>
 	</build>
+
 </project>
