@@ -82,13 +82,4 @@ export default{
 </script>
 
 <style>
-.carousel-indicators {
-  bottom: -2.4375rem;
-}
-.carousel-control-prev {
-  margin-left: -25px;
-}
-.carousel-control-next {
-  margin-right: -25px;
-}
 </style>
