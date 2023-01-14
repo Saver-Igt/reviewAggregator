@@ -23,6 +23,11 @@ public class ReviewServiceDB implements ReviewService {
     }
 
     @Override
+    public List<Review> getReviewsByGameId(Long gameId) throws Exception {
+        return reviewRepository.findByGameId(gameId);
+    }
+
+    @Override
     public Review addReview(Review review) throws Exception {
         return null;
     }

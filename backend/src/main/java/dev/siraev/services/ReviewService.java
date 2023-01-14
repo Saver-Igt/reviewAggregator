@@ -9,6 +9,7 @@ public interface ReviewService {
 
     Review getReview(Long userId, Long gameId) throws Exception;
 
+    List<Review> getReviewsByGameId(Long gameId) throws Exception;
     Review addReview(Review review) throws Exception;
 
 }

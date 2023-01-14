@@ -1,4 +1,4 @@
-package dev.siraev.controller;
+package dev.siraev.controllers;
 
 import dev.siraev.models.Review;
 import dev.siraev.services.ReviewService;
@@ -23,5 +23,9 @@ public class ReviewController {
     @GetMapping("/u{userId}/g{gameId}")
     public @ResponseBody Review getReview(@PathVariable Long userId, @PathVariable Long gameId) throws Exception{
         return reviewService.getReview(userId,gameId);
+    }
+    @GetMapping("/g{gameId}")
+    public @ResponseBody List<Review> getReviewsByGame(@PathVariable Long gameId)throws Exception{
+        return reviewService.getReviewsByGameId(gameId);
     }
 }
