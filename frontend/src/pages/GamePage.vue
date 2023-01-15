@@ -36,7 +36,7 @@
         </div>
       </section>
       <section>
-        <Reviews/>
+        <Reviews v-bind:gameId = game.id />
       </section>
     </div>
   </div>

@@ -12,16 +12,16 @@ public class Review {
     @Id
     @Column(name = "game_id")
     private Long gameId;
-    @Column(name = "scope")
-    private String value;
+    @Column(name = "score")
+    private String score;
     @Column(name = "comment")
     private String comment;
 
     public Review(){}
-    public Review(Long userId, Long gameId, String value, String comment){
+    public Review(Long userId, Long gameId, String score, String comment){
         this.userId = userId;
         this.gameId = gameId;
-        this.value = value;
+        this.score = score;
         this.comment = comment;
     }
     public Long getUserId() {
@@ -31,14 +31,14 @@ public class Review {
         return gameId;
     }
     public String getValue() {
-        return value;
+        return score;
     }
     public String getComment() {
         return comment;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setValue(String score) {
+        this.score = score;
     }
     public void setComment(String comment) {
         this.comment = comment;
