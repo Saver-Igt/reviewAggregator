@@ -4,12 +4,18 @@ import GamePage from '../pages/GamePage.vue'
 import ReviewsPage from '../pages/ReviewsPage.vue'
 import FAQPage from '../pages/faqPage.vue'
 import AllGamesPage from "@/pages/AllGamesPage.vue";
+import LoginPage from "@/pages/loginPage.vue";
 
 const routes = [
     {
         path: '/',
         name: 'mainPage',
         component: MainPage
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: LoginPage
     },
     {
         path: '/games',

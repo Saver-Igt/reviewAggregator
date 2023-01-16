@@ -38,9 +38,10 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-primary" type="submit">Find</button>
           </form>
-          <a href="auth/login" type="button" class="btn btn-success m-2">
+          <button type="button" class="btn btn-success m-2"
+                  @click="$router.push({name:'login'})">
             Sign in
-          </a>
+          </button>
         </div>
       </div>
     </nav>

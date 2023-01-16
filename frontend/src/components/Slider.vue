@@ -5,7 +5,7 @@
       <button
           class="btn btn-primary arrow me-2"
           id="slide-left"
-          @click="scrollLeft">
+          @click="swipeLeft">
           <span aria-hidden="true">
               <svg class="bi" width="32" height="32" fill="black">
                   <use xlink:href="../assets/bootstrap-icons.svg#arrow-left"/>
@@ -15,7 +15,7 @@
       <button
           class="btn btn-primary arrow me-2"
           id="slide-right"
-          @click="scrollRight">
+          @click="swipeRight">
           <span aria-hidden="true">
               <svg class="bi" width="32" height="32" fill="black">
                   <use xlink:href="../assets/bootstrap-icons.svg#arrow-right"/>
@@ -27,7 +27,7 @@
     <div class="slide-container">
       <div class="slide-container" id="content" ref="content" v-if="games">
         <vSliderItem
-            v-for="game in games"
+            v-for="game in sortedGames"
             :key="game.id"
             :game_data="game"
         />
@@ -48,24 +48,66 @@ export default{
   },
   data(){
     return{
-      games: null
+      games: null,
     }
   },
   methods: {
-    scrollLeft: function () {
-      const menu = this.$refs.content
-      menu.scrollLeft -= 100;
+    /**
+     * scrollTo - Horizontal Scrolling
+     * @param {(HTMLElement ref)} element - Scroll Container
+     * @param {number} scrollPixels - pixel to scroll
+     * @param {number} duration -  Duration of scrolling animation in millisec
+     */
+    scrollTo(element, scrollPixels, duration) {
+      const scrollPos = element.scrollLeft;
+      // Condition to check if scrolling is required
+      var getTotal;
+      if ( !( (scrollPos === 0 || scrollPixels > 0) && (element.clientWidth + scrollPos === element.scrollWidth || scrollPixels < 0)))
+      {
+        // Get the start timestamp
+        const startTime =
+            "now" in window.performance
+                ? performance.now()
+                : new Date().getTime();
+
+        getTotal = function (timestamp) {
+          //Calculate the timeelapsed
+          const timeElapsed = timestamp - startTime;
+          //Calculate progress
+          const progress = Math.min(timeElapsed / duration, 1);
+          //Set the scrolleft
+          element.scrollLeft = scrollPos + scrollPixels * progress;
+          //Check if elapsed time is less then duration then call the requestAnimation, otherwise exit
+          if (timeElapsed < duration) {
+            //Request for animation
+            window.requestAnimationFrame(getTotal);
+          } else {
+            return;
+          }
+        }
+        //Call requestAnimationFrame on scroll function first time
+        window.requestAnimationFrame(getTotal);
+      }
     },
-    scrollRight: function () {
-      const menu = this.$refs.content
-      menu.scrollLeft += 100;
+    swipeLeft() {
+      const content = this.$refs.content;
+      this.scrollTo(content, -310, 800);
+    },
+    swipeRight() {
+      const content = this.$refs.content;
+      this.scrollTo(content, 310, 800);
     }
   },
   mounted() {
     axios.get('/api/games')
         .then(response => (this.games = response.data))
         .catch(error => console.log(error));
-  }
+  },
+  computed:{
+    sortedGames() {
+      return [...this.games].sort((a, b) => { return (a.avgRate < b.avgRate) ? 1 : -1; });
+    }
+  },
 }
 </script>
 

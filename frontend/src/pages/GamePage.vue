@@ -25,14 +25,19 @@
         </div>
       </section>
       <section>
-        <h2>Reviews</h2>
+        <h2>Your review</h2>
         <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+          <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
+          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,...">
         </div>
         <div class="mb-3 form-floating">
           <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
           <label for="floatingTextarea">Comments</label>
+        </div>
+        <div>
+          <button class="btn btn-success">
+            Publish
+          </button>
         </div>
       </section>
       <section>

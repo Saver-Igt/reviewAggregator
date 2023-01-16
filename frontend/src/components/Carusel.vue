@@ -55,7 +55,7 @@
                 <h2 class="mt-4">Hello user! This is the place where you can share your opinion about the games and read the opinions of others.</h2>
               </div>
               <div class="col-5">
-                <img class="w-100 img-fluid" src="../assets/logo.png" alt="">
+                <img class="w-100 img-fluid" src="../assets/img3.jpg" alt="">
               </div>
             </div>
           </div>

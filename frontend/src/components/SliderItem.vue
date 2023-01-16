@@ -9,7 +9,7 @@
       <h2 :title=game_data.name>
         {{ game_data.name}}
       </h2>
-      <p class = "avg-rating">
+      <p class = "avg-rating" :style="ratingColor">
         {{ game_data.avgRate}}
       </p>
     </div>
@@ -28,12 +28,28 @@ export default{
       }
     }
   },
+  data(){
+    return{
+      ratingColor:{
+        color: "red"
+      }
+    }
+  },
   methods:{
     redirectToGamePage(){
       this.$router.push({
         name: 'game',
         params: {id: this.game_data.id}
       })
+    }
+  },
+  created() {
+    if (this.game_data.avgRate < 30){
+      this.ratingColor.color = "red"
+    } else if (this.game_data.avgRate > 75){
+      this.ratingColor.color = "green"
+    }else {
+      this.ratingColor.color = "yellow"
     }
   }
 }

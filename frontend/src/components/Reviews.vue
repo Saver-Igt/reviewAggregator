@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>There are many reviews!</h2>
+    <h2>Reviews</h2>
     <ul id="example-1">
       <li v-for="review in reviews" :key="review.userId">
         userID : {{review.userId}}
