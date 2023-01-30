@@ -5,6 +5,7 @@ import ReviewsPage from '../pages/ReviewsPage.vue'
 import FAQPage from '../pages/faqPage.vue'
 import AllGamesPage from "@/pages/AllGamesPage.vue";
 import LoginPage from "@/pages/loginPage.vue";
+import Profile from "@/pages/Profile.vue";
 
 const routes = [
     {
@@ -37,6 +38,11 @@ const routes = [
         path: '/faq',
         name: 'FAQ',
         component: FAQPage
+    },
+    {
+        path: '/profile',
+        name: 'profile',
+        component: Profile
     },
 
     // otherwise redirect to home
