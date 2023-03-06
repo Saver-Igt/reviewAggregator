@@ -1,6 +1,8 @@
 package dev.siraev.controllers;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import dev.siraev.models.Review;
+import dev.siraev.models.Views;
 import dev.siraev.services.ReviewService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +19,7 @@ public class ReviewController {
     }
 
     @GetMapping
+    @JsonView(Views.Review.class)
     public @ResponseBody List<Review> getReviews() throws Exception{
         return reviewService.getReviews();
     }
@@ -25,6 +28,7 @@ public class ReviewController {
         return reviewService.getReview(userId,gameId);
     }
     @GetMapping("/g{gameId}")
+    @JsonView(Views.Review.class)
     public @ResponseBody List<Review> getReviewsByGame(@PathVariable Long gameId)throws Exception{
         return reviewService.getReviewsByGameId(gameId);
     }

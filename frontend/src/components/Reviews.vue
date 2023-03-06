@@ -1,13 +1,18 @@
 <template>
   <div>
     <h2>Reviews</h2>
-    <ul id="example-1">
-      <li v-for="review in reviews" :key="review.userId">
-        userID : {{review.userId}}
-        Score : {{review.value}}
-        Comment :{{review.comment}}
-      </li>
-    </ul>
+    <div v-if="reviews">
+      <ul id="example-1">
+        <li v-for="review in reviews" :key="review.userId">
+          User Name : {{review.user.username}}
+          Score : {{review.score}}
+          Comment :{{review.comment}}
+        </li>
+      </ul>
+    </div>
+    <div v-else>
+      <p>There are not reviews yet. Be first!</p>
+    </div>
   </div>
 </template>
 
@@ -33,5 +38,4 @@ export default {
 </script>
 
 <style>
-
 </style>
