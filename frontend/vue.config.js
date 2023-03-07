@@ -13,7 +13,11 @@ module.exports = {
   },
   pwa: {
     iconPaths: {
-      favicon32: '/favicon.png',
+      favicon32: '/public/favicon.ico',
+      favicon16: "./public/favicon.ico",
+      appleTouchIcon: "./public/favicon.ico",
+      maskIcon: "./public/favicon.ico",
+      msTileImage: "./public/favicon.ico"
     }
   },
   // Change build paths to make them Maven compatible
