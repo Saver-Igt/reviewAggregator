@@ -3,21 +3,16 @@
     <section>
       <h1 class="mb-4 ms-3">All games</h1>
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4 mb-4" v-for="game in games" :key="game.Id">
           <div class="card">
+            <img :src="require('../' + game.iconURL)"
+                 width="700"
+                 height="500"
+                 class="img-fluid"/>
             <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-6">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Special title treatment</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title mb-4 gameName">{{game.name}}</h5>
+              <p>{{game.avgRate}}</p>
+              <a href="" class="btn btn-primary" @click="redirectToGamePage">Go somewhere</a>
             </div>
           </div>
         </div>
@@ -27,10 +22,34 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'AllGamesPage',
-
+  data(){
+    return{
+      games:null
+    }
+  },
+  methods:{
+    redirectToGamePage(){
+      this.$router.push({
+        name: 'game',
+        params: {id: 1}
+      })
+    }
+  },
+  mounted() {
+    axios.get('/api/games/')
+        .then(response => (this.games = response.data))
+        .catch(error => console.log(error));
+  }
 }
 </script>
 <style>
+.gameName{
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
 </style>

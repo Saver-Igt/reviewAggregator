@@ -2,7 +2,7 @@
     <footer>
       <div class="container-xxl" id="footer">
         <div class="row">
-          <div class="col-10 text-left">
+          <div class="col text-left">
             <a href="https://github.com/Saver-Igt" target="_blank" class="btn btn-outline-light">
               <svg class="bi" width="32" height="32" fill="currentColor">
                 <use xlink:href="../assets/bootstrap-icons.svg#github"/>
@@ -19,12 +19,8 @@
               </svg>
             </a>
           </div>
-          <div class="col-1">
-            <a href="#app" class="btn btn-outline-light">
-              <svg class="bi" width="32" height="32" fill="currentColor">
-                <use xlink:href="../assets/bootstrap-icons.svg#arrow-up-square"/>
-              </svg>
-            </a>
+          <div class="text-light fs-4 col-7">
+            © 2023 Copyright: Saver Dev
           </div>
         </div>
       </div>
@@ -36,7 +32,6 @@ export default{
   name: 'vFooter',
 }
 </script>
-
 <style>
 footer{
   padding: 50px 0;
