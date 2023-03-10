@@ -12,7 +12,7 @@
             <div class="card-body">
               <h5 class="card-title mb-4 gameName">{{game.name}}</h5>
               <p>{{game.avgRate}}</p>
-              <a href="" class="btn btn-primary" @click="redirectToGamePage">Go somewhere</a>
+              <a href="" class="btn btn-primary" @click="redirectToGamePage(game.id)">Go</a>
             </div>
           </div>
         </div>
@@ -32,10 +32,10 @@ export default {
     }
   },
   methods:{
-    redirectToGamePage(){
+    redirectToGamePage(id){
       this.$router.push({
         name: 'game',
-        params: {id: 1}
+        params: {id: id}
       })
     }
   },

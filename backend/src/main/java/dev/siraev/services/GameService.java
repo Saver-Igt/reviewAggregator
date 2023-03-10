@@ -11,7 +11,7 @@ public interface  GameService {
 
     Game addGame(Game game) throws Exception;
 
-    Game editGame(Long id, String name, String description) throws Exception;
+    Game editGame(Long id, Game game) throws Exception;
 
     void deleteGame(Long id) throws Exception;
 }

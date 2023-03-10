@@ -1,13 +1,11 @@
 package dev.siraev.models;
 
-
 import javax.persistence.*;
 
 @Entity
 @Table(name="games")
 public class Game {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "name")
     private String name;
@@ -18,11 +16,14 @@ public class Game {
     @Column(name = "icon_url")
     private String iconURL;
     public Game(){}
-    public Game(Long id, String name, String description){
+    public Game(Long id, String name, String description, float avgRate, String iconURL) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.avgRate = avgRate;
+        this.iconURL = iconURL;
     }
+
     public void setId(Long id) {
         this.id = id;
     }

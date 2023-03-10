@@ -1,5 +1,6 @@
 package dev.siraev.services;
 
+import dev.siraev.models.Game;
 import dev.siraev.models.Review;
 import dev.siraev.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
@@ -29,6 +30,20 @@ public class ReviewServiceDB implements ReviewService {
 
     @Override
     public Review addReview(Review review) throws Exception {
-        return null;
+        return reviewRepository.save(review);
+    }
+
+    @Override
+    public Review editReview(Long userId, Long gameId, Review review) throws Exception {
+        Review findReview = getReview(userId, gameId);
+        findReview.setScore(review.getScore());
+        findReview.setComment(review.getComment());
+        return reviewRepository.save(findReview);
+    }
+
+    @Override
+    public void deleteReview(Long userId, Long gameId) throws Exception {
+        Review findReview = getReview(userId, gameId);
+        reviewRepository.delete(findReview);
     }
 }

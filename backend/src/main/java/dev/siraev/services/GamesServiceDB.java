@@ -27,10 +27,11 @@ public class GamesServiceDB implements GameService{
     }
 
     @Override
-    public Game editGame(Long id, String name, String description) throws Exception {
+    public Game editGame(Long id, Game game) throws Exception {
         Game findGame = getGame(id);
-        findGame.setName(name);
-        findGame.setDescription(description);
+        findGame.setName(game.getName());
+        findGame.setDescription(game.getDescription());
+        findGame.setIconURL(game.getIconURL());
         return gameRepository.save(findGame);
     }
 

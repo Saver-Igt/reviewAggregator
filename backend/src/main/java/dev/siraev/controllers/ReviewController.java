@@ -1,9 +1,11 @@
 package dev.siraev.controllers;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import dev.siraev.models.Game;
 import dev.siraev.models.Review;
 import dev.siraev.models.Views;
 import dev.siraev.services.ReviewService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class ReviewController {
         return reviewService.getReviews();
     }
     @GetMapping("/u{userId}/g{gameId}")
+    @JsonView(Views.Review.class)
     public @ResponseBody Review getReview(@PathVariable Long userId, @PathVariable Long gameId) throws Exception{
         return reviewService.getReview(userId,gameId);
     }
@@ -31,5 +34,20 @@ public class ReviewController {
     @JsonView(Views.Review.class)
     public @ResponseBody List<Review> getReviewsByGame(@PathVariable Long gameId)throws Exception{
         return reviewService.getReviewsByGameId(gameId);
+    }
+    @PostMapping
+    public @ResponseBody Review addReview(@RequestBody Review review) throws Exception{
+        return reviewService.addReview(review);
+    }
+    @PutMapping("/u{userId}/g{gameId}")
+    @JsonView(Views.Review.class)
+    public@ResponseBody
+    Review editReview(@PathVariable Long userId,@PathVariable Long gameId, @RequestBody Review review) throws Exception{
+        return reviewService.editReview(userId, gameId, review);
+    }
+    @DeleteMapping("/u{userId}/g{gameId}")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteReview(@PathVariable Long userId,@PathVariable Long gameId)throws Exception{
+        reviewService.deleteReview(userId, gameId);
     }
 }

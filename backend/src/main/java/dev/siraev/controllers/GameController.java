@@ -32,11 +32,8 @@ public class GameController {
     }
     @PutMapping("/{id}")
     public@ResponseBody
-    Game editGame(@PathVariable Long id,
-                  @RequestBody String name,
-                  @RequestBody String description
-    ) throws Exception{
-        return gameService.editGame(id, name, description);
+    Game editGame(@PathVariable Long id, @RequestBody Game game) throws Exception{
+        return gameService.editGame(id, game);
     }
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)

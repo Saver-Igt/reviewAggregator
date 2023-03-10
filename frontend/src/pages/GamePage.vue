@@ -30,6 +30,10 @@
           <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
           <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,...">
         </div>
+        <div class="mb-3">
+          <label for="exampleFormControlInput2" class="form-label">Enter user id</label>
+          <input type="number" class="form-control" id="exampleFormControlInput2" placeholder="1,2,3,...">
+        </div>
         <div class="mb-3 form-floating">
           <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
           <label for="floatingTextarea">Comments</label>

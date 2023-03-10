@@ -18,7 +18,7 @@ public class Review {
     private Long gameId;
     @Column(name = "score")
     @JsonView(Views.Review.class)
-    private String score;
+    private float score;
     @Column(name = "comment")
     @JsonView(Views.Review.class)
     private String comment;
@@ -28,37 +28,41 @@ public class Review {
     private User user;
 
     public Review(){}
-
-    public Review(Long userId, Long gameId, String score, String comment, User user) {
+    public Review(Long userId, Long gameId, float score, String comment, User user) {
         this.userId = userId;
         this.gameId = gameId;
         this.score = score;
         this.comment = comment;
         this.user = user;
     }
+    public Long getUserId() {
+        return userId;
+    }
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+    public Long getGameId() {
+        return gameId;
+    }
+    public void setGameId(Long gameId) {
+        this.gameId = gameId;
+    }
+    public float getScore() {
+        return score;
+    }
+    public void setScore(float score) {
+        this.score = score;
+    }
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
     public User getUser() {
         return user;
     }
     public void setUser(User user) {
         this.user = user;
-    }
-    public Long getUserId() {
-        return userId;
-    }
-    public Long getGameId() {
-        return gameId;
-    }
-    public String getValue() {
-        return score;
-    }
-    public String getComment() {
-        return comment;
-    }
-
-    public void setValue(String score) {
-        this.score = score;
-    }
-    public void setComment(String comment) {
-        this.comment = comment;
     }
 }
