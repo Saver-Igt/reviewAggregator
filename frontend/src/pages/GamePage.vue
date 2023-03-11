@@ -25,24 +25,26 @@
         </div>
       </section>
       <section>
+
         <h2>Your review</h2>
         <div class="mb-3">
           <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
-          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,...">
+          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,..." v-model="review.score">
         </div>
         <div class="mb-3">
           <label for="exampleFormControlInput2" class="form-label">Enter user id</label>
-          <input type="number" class="form-control" id="exampleFormControlInput2" placeholder="1,2,3,...">
+          <input type="number" class="form-control" id="exampleFormControlInput2" placeholder="1,2,3,..." v-model="review.userId">
         </div>
         <div class="mb-3 form-floating">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
+          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" v-model="review.comment"></textarea>
           <label for="floatingTextarea">Comments</label>
         </div>
         <div>
-          <button class="btn btn-success">
+          <button class="btn btn-success" @click="addReview">
             Publish
           </button>
         </div>
+
       </section>
       <section>
         <Reviews v-bind:gameId = game.id />
@@ -62,7 +64,31 @@ export default {
   props: ['id'],
   data(){
     return{
-      game:null
+      game:null,
+      review:{
+        userId:null,
+        gameId:null,
+        score:null,
+        comment:null,
+      }
+    }
+  },
+  methods:{
+    push(){
+      console.log("Hello " + this.score + " " + this.comment)
+    },
+    addReview: function () {
+      this.review.gameId = this.id;
+      axios.post('http://localhost:8098/api/reviews',
+          JSON.stringify(this.review), {
+            headers:{'Content-Type': 'application/json; charset=utf-8'}
+          })
+          .then (response => {
+            console.log("review added" + response);
+          })
+          .catch(error => {
+            alert(error);
+          });
     }
   },
   mounted() {
