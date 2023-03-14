@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 export default {
   name: 'AllGamesPage',
   data(){
@@ -40,9 +38,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('/api/games/')
-        .then(response => (this.games = response.data))
-        .catch(error => console.log(error));
+    this.games = this.$store.getters.getGames
   }
 }
 </script>

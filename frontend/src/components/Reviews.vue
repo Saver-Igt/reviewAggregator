@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import {mapGetters} from "vuex";
 
 export default {
   name: 'vReviews',
@@ -34,8 +34,6 @@ export default {
   },
   data(){
     return{
-      reviews :null,
-      isReviewsEmpty: true
     }
   },
   methods:{
@@ -47,15 +45,12 @@ export default {
       }
     }
   },
-  mounted() {
-    axios.get('/api/reviews/g' + this.gameId)
-        .then(response => {
-          this.reviews = response.data;
-          this.checkEmpty()
-        }).catch(error => {
-          console.log(error)
-        });
-  }
+  computed:{
+    ...mapGetters(['getReviewsByGameId']),
+    reviews(){
+      return this.getReviewsByGameId(parseInt(this.gameId))
+    }
+  },
 }
 </script>
 <style>

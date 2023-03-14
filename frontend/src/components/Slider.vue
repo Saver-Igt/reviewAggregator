@@ -37,7 +37,7 @@
 </template>
 <script>
 import vSliderItem from './SliderItem.vue';
-import axios from 'axios';
+import {mapGetters} from "vuex";
 export default{
   name:'vSlider',
   components:{
@@ -48,7 +48,6 @@ export default{
   },
   data(){
     return{
-      games: null,
     }
   },
   methods: {
@@ -98,14 +97,13 @@ export default{
       this.scrollTo(content, 310, 800);
     }
   },
-  mounted() {
-    axios.get('/api/games')
-        .then(response => (this.games = response.data))
-        .catch(error => console.log(error));
-  },
   computed:{
+    ...mapGetters(['getGames', 'getSortedGames']),
     sortedGames() {
-      return [...this.games].sort((a, b) => { return (a.avgRate < b.avgRate) ? 1 : -1; });
+      return this.getSortedGames;
+    },
+    games(){
+      return this.getGames;
     }
   },
 }

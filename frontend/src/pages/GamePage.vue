@@ -44,7 +44,6 @@
             Publish
           </button>
         </div>
-
       </section>
       <section>
         <Reviews v-bind:gameId = game.id />
@@ -56,6 +55,7 @@
 <script>
 import axios from "axios";
 import Reviews from "@/components/Reviews.vue";
+import {mapGetters} from "vuex";
 export default {
   name: 'GamePage',
   components:{
@@ -64,7 +64,7 @@ export default {
   props: ['id'],
   data(){
     return{
-      game:null,
+      //game:null,
       review:{
         userId:null,
         gameId:null,
@@ -74,9 +74,6 @@ export default {
     }
   },
   methods:{
-    push(){
-      console.log("Hello " + this.score + " " + this.comment)
-    },
     addReview: function () {
       this.review.gameId = this.id;
       axios.post('http://localhost:8098/api/reviews',
@@ -91,10 +88,11 @@ export default {
           });
     }
   },
-  mounted() {
-    axios.get('/api/games/' + this.id)
-        .then(response => (this.game = response.data))
-        .catch(error => console.log(error));
+  computed:{
+    ...mapGetters(['getGame']),
+    game(){
+      return this.$store.getters.getGame(parseInt(this.id))
+    }
   }
 }
 </script>

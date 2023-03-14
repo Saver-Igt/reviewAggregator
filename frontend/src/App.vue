@@ -20,6 +20,10 @@ export default {
   components: {
     Header,
     Footer
+  },
+  created() {
+    this.$store.dispatch('loadGames')
+    this.$store.dispatch('loadReviews')
   }
 }
 </script>
