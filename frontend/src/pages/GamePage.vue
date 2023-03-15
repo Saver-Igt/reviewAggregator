@@ -40,7 +40,7 @@
           <label for="floatingTextarea">Comments</label>
         </div>
         <div>
-          <button class="btn btn-success" @click="addReview">
+          <button class="btn btn-success" @click="submit">
             Publish
           </button>
         </div>
@@ -53,9 +53,8 @@
 </template>
 
 <script>
-import axios from "axios";
 import Reviews from "@/components/Reviews.vue";
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'GamePage',
   components:{
@@ -64,7 +63,6 @@ export default {
   props: ['id'],
   data(){
     return{
-      //game:null,
       review:{
         userId:null,
         gameId:null,
@@ -74,18 +72,10 @@ export default {
     }
   },
   methods:{
-    addReview: function () {
+    ...mapActions(['addReview']),
+    submit: function () {
       this.review.gameId = this.id;
-      axios.post('http://localhost:8098/api/reviews',
-          JSON.stringify(this.review), {
-            headers:{'Content-Type': 'application/json; charset=utf-8'}
-          })
-          .then (response => {
-            console.log("review added" + response);
-          })
-          .catch(error => {
-            alert(error);
-          });
+      this.addReview(this.review);
     }
   },
   computed:{

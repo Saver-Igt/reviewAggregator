@@ -26,7 +26,6 @@
 
 <script>
 import {mapGetters} from "vuex";
-
 export default {
   name: 'vReviews',
   props:{
@@ -37,18 +36,18 @@ export default {
     }
   },
   methods:{
-    checkEmpty(){
-      if (this.reviews && this.reviews.length > 0){
-        this.isReviewsEmpty = false
-      }else {
-        this.isReviewsEmpty = true
-      }
-    }
   },
   computed:{
     ...mapGetters(['getReviewsByGameId']),
-    reviews(){
+    reviews() {
       return this.getReviewsByGameId(parseInt(this.gameId))
+    },
+    isReviewsEmpty(){
+      if (this.reviews && this.reviews.length > 0){
+        return false
+      }else {
+        return true
+      }
     }
   },
 }
