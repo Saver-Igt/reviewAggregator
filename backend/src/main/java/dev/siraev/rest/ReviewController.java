@@ -1,4 +1,4 @@
-package dev.siraev.controllers;
+package dev.siraev.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import dev.siraev.models.Game;

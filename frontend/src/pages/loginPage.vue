@@ -1,22 +1,21 @@
 <template>
   <div class="container-xxl mt-5">
     <section>
-      <form>
+      <form method="POSt" action="/auth/login">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="username" class="form-control"
-                 id="username"
+                 id="username" name="username"
                  v-model="user.username"
                  >
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password"
+          <input type="password" class="form-control" id="password" name="password"
                  v-model="user.password">
         </div>
-        <button type="submit" class="btn btn-primary"
-          @click="sendUser"
-        >Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <h4><a href="/registration">Зарегистрироваться</a></h4>
       </form>
     </section>
   </div>
@@ -34,7 +33,7 @@ export default {
   },
   methods: {
     sendUser() {
-      axios.post('http://localhost:8098/auth/login',
+      axios.post('/api/auth/login',
           JSON.stringify(this.user), {
             headers: {'Content-Type': 'application/json; charset=utf-8'}
           })

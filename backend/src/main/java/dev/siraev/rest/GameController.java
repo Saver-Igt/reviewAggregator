@@ -1,4 +1,4 @@
-package dev.siraev.controllers;
+package dev.siraev.rest;
 
 import dev.siraev.models.Game;
 import dev.siraev.services.GameService;
