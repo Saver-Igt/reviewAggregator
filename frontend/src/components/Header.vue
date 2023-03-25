@@ -39,7 +39,7 @@
             <button class="btn btn-primary" type="submit">Find</button>
           </form>
           <button type="button" class="btn btn-success m-2"
-                  @click="$router.push({name:'profile'})">
+                  @click="$router.push({name:'login'})">
             <svg class="bi" width="24" height="24" fill="currentColor">
               <use xlink:href="../assets/bootstrap-icons.svg#person-circle"/>
             </svg>

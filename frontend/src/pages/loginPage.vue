@@ -1,7 +1,7 @@
 <template>
   <div class="container-xxl mt-5">
     <section>
-      <form method="POSt" action="/auth/login">
+      <form>
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="username" class="form-control"
@@ -14,7 +14,7 @@
           <input type="password" class="form-control" id="password" name="password"
                  v-model="user.password">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" @click="sendUser">Submit</button>
         <h4><a href="/registration">Зарегистрироваться</a></h4>
       </form>
     </section>
@@ -35,9 +35,10 @@ export default {
     sendUser() {
       axios.post('/api/auth/login',
           JSON.stringify(this.user), {
-            headers: {'Content-Type': 'application/json; charset=utf-8'}
+            headers:{'Content-Type': 'application/json; charset=utf-8'}
           })
           .then(response => {
+            this.res = response;
             console.log('Log ' + response);
           })
           .catch(error => {

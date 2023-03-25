@@ -1,47 +1,27 @@
 package dev.siraev.models;
 
-import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-import javax.persistence.*;
 import java.util.Set;
+import java.util.stream.Collectors;
 
-@Entity
-@Table(name = "roles")
-public class Role implements GrantedAuthority {
-    @Id
-    private Long id;
-    private String name;
-    @Transient
-    @ManyToMany(mappedBy = "roles")
-    private Set<User> users;
+public enum Role{
+    USER(Set.of(Permission.DEVELOPERS_READ)),
+    ADMIN(Set.of(Permission.DEVELOPERS_READ, Permission.DEVELOPERS_WRITE));
 
-    public Role(Long id, String name) {
-        this.id = id;
-        this.name = name;
+    private final Set<Permission> permissions;
+
+    Role(Set<Permission> permissions) {
+        this.permissions = permissions;
     }
 
-    public Role() {
+    public Set<Permission> getPermissions() {
+        return permissions;
     }
-    public Long getId() {
-        return id;
-    }
-    public void setId(Long id) {
-        this.id = id;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public Set<User> getUsers() {
-        return users;
-    }
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
-    @Override
-    public String getAuthority() {
-        return getName();
+
+    public Set<SimpleGrantedAuthority> getAuthorities() {
+        return getPermissions().stream()
+                .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
+                .collect(Collectors.toSet());
     }
 }

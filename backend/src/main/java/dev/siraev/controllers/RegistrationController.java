@@ -1,12 +1,12 @@
 package dev.siraev.controllers;
 
-import dev.siraev.services.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class RegistrationController {
+    /*
     private final UserService userService;
     public RegistrationController(UserService userService){
         this.userService = userService;
@@ -15,4 +15,6 @@ public class RegistrationController {
     public @ResponseBody String addUser(){
         return "";
     }
+
+     */
 }

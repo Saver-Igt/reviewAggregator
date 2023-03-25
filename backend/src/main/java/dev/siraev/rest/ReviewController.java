@@ -1,7 +1,6 @@
 package dev.siraev.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import dev.siraev.models.Game;
 import dev.siraev.models.Review;
 import dev.siraev.models.Views;
 import dev.siraev.services.ReviewService;

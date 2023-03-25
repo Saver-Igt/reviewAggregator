@@ -1,6 +1,6 @@
 package dev.siraev.models;
 
 public class Views {
-    public interface IdName{}
-    public interface Review extends IdName{}
+    public interface UserView{}
+    public interface Review extends UserView{}
 }

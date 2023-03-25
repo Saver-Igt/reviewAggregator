@@ -15,6 +15,7 @@ public class Game {
     private float avgRate;
     @Column(name = "icon_url")
     private String iconURL;
+
     public Game(){}
     public Game(Long id, String name, String description, float avgRate, String iconURL) {
         this.id = id;

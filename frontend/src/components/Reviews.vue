@@ -11,9 +11,22 @@
             <div class="shadow mb-4">
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">{{review.user.username}}</h4>
-                  <div class="badge bg-primary">{{review.score}}</div>
-                  <p class="card-text">{{review.comment}}</p>
+                  <div class="row">
+                    <div class="col-1">
+                      <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                           class="rounded-circle" style="width: 100px;"
+                           alt="Avatar" />
+                    </div>
+                    <div class="col-2 mt-2">
+                      <h4 class="card-title">{{review.user.firstName}} {{review.user.lastName}}</h4>
+                      <div class="">Age: {{review.user.age}}</div>
+                      <div class="">Gender: {{review.user.gender}}</div>
+                    </div>
+                    <div class="col mt-2">
+                      <div class="badge bg-primary fs-5">{{review.score}}</div>
+                      <p class="card-text fs-5">{{review.comment}}</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

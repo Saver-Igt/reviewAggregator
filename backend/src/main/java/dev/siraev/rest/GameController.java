@@ -3,6 +3,7 @@ package dev.siraev.rest;
 import dev.siraev.models.Game;
 import dev.siraev.services.GameService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,16 +27,19 @@ public class GameController {
         return gameService.getGame(id);
     }
     @PostMapping
+    @PreAuthorize("hasAuthority('developers:write')")
     public @ResponseBody
     Game addGame(@RequestBody Game game) throws Exception{
         return gameService.addGame(game);
     }
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('developers:write')")
     public@ResponseBody
     Game editGame(@PathVariable Long id, @RequestBody Game game) throws Exception{
         return gameService.editGame(id, game);
     }
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('developers:write')")
     @ResponseStatus(HttpStatus.OK)
     public void deleteGame(@PathVariable Long id)throws Exception{
         gameService.deleteGame(id);

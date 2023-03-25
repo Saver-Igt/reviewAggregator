@@ -26,7 +26,6 @@ public class Review {
     @JoinColumn(name="user_id", nullable=false, insertable = false, updatable = false)
     @JsonView(Views.Review.class)
     private User user;
-
     public Review(){}
     public Review(Long userId, Long gameId, float score, String comment, User user) {
         this.userId = userId;

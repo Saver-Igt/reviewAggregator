@@ -2,7 +2,6 @@ package dev.siraev.services;
 
 import dev.siraev.models.Role;
 import dev.siraev.models.User;
-import dev.siraev.repository.RoleRepository;
 import dev.siraev.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService {/* implements UserDetailsService {
     @PersistenceContext
     private EntityManager entityManager;
     @Autowired
@@ -65,4 +64,5 @@ public class UserService implements UserDetailsService {
         }
         return false;
     }
+    */
 }
