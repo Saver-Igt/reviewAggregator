@@ -9,8 +9,9 @@ import java.util.List;
 @Service
 public class ReviewServiceDB implements ReviewService {
     private final ReviewRepository reviewRepository;
-
-    public ReviewServiceDB(ReviewRepository reviewRepository) {
+    private final GameService gameService;
+    public ReviewServiceDB(ReviewRepository reviewRepository, GameService gameService) {
+        this.gameService = gameService;
         this.reviewRepository = reviewRepository;
     }
     @Override
@@ -30,7 +31,9 @@ public class ReviewServiceDB implements ReviewService {
 
     @Override
     public Review addReview(Review review) throws Exception {
-        return reviewRepository.save(review);
+        Review result = reviewRepository.save(review);
+        changeGameAvgRating(review.getGameId());
+        return result;
     }
 
     @Override
@@ -38,12 +41,30 @@ public class ReviewServiceDB implements ReviewService {
         Review findReview = getReview(userId, gameId);
         findReview.setScore(review.getScore());
         findReview.setComment(review.getComment());
-        return reviewRepository.save(findReview);
+        Review result = reviewRepository.save(findReview);
+        changeGameAvgRating(gameId);
+        return result;
     }
 
     @Override
     public void deleteReview(Long userId, Long gameId) throws Exception {
         Review findReview = getReview(userId, gameId);
         reviewRepository.delete(findReview);
+        changeGameAvgRating(gameId);
+    }
+    public void changeGameAvgRating(Long gameId) throws Exception {
+        List<Review> reviews = getReviewsByGameId(gameId);
+
+        Long countReview = reviews.stream().count();
+
+        int sum = 0;
+        for (Review review: reviews) {
+            sum += review.getScore();
+        }
+
+        int result = Math.round(sum/countReview);
+
+        gameService.changeAvgRating(gameId, result);
+
     }
 }

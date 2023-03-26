@@ -1,9 +1,15 @@
 import { createStore } from 'vuex'
 import axios from "axios";
+import authModule from "@/store/modules/AuthModule";
 export default createStore({
-    state: {
-        games: [],
-        reviews: []
+    modules:{
+        authModule
+    },
+    state() {
+        return {
+            games: [],
+            reviews:[]
+        }
     },
     actions: {
         async loadGames({commit}){
@@ -38,17 +44,18 @@ export default createStore({
                 console.error(error)
             }
         }
+
     },
     mutations: {
-        SET_GAMES(state, payload){
-            state.games = payload
+        SET_GAMES(state, games){
+            state.games = games
         },
-        SET_REVIEWS(state, payload){
-            state.reviews = payload
+        SET_REVIEWS(state, reviews){
+            state.reviews = reviews
         },
-        ADD_REVIEW: (state, payload) => {
-            state.reviews.push(payload);
-        },
+        ADD_REVIEW: (state, reviews) => {
+            state.reviews.push(reviews);
+        }
     },
     getters:{
         getGames(state){return state.games},

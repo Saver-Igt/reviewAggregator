@@ -39,4 +39,10 @@ public class GamesServiceDB implements GameService{
     public void deleteGame(Long id) throws Exception {
         gameRepository.deleteById(id);
     }
+    @Override
+    public void changeAvgRating(Long id, int rating) throws Exception{
+        Game findGame = getGame(id);
+        findGame.setAvgRate(rating);
+        gameRepository.save(findGame);
+    }
 }

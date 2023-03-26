@@ -81,7 +81,7 @@ export default {
   computed:{
     ...mapGetters(['getGame']),
     game(){
-      return this.$store.getters.getGame(parseInt(this.id))
+      return this.getGame(parseInt(this.id))
     }
   }
 }

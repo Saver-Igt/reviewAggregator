@@ -1,7 +1,7 @@
 <template>
   <div class="container-xxl mt-5">
     <section>
-      <form>
+      <form @submit="onSubmit">
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="username" class="form-control"
@@ -14,14 +14,15 @@
           <input type="password" class="form-control" id="password" name="password"
                  v-model="user.password">
         </div>
-        <button type="submit" class="btn btn-primary" @click="sendUser">Submit</button>
+        <button class="btn btn-primary">Submit</button>
         <h4><a href="/registration">Зарегистрироваться</a></h4>
       </form>
+      <button class="btn btn-primary" @click="logout">logout</button>
     </section>
   </div>
 </template>
 <script>
-import axios from "axios";
+import {mapGetters} from "vuex";
 export default {
   data(){
     return{
@@ -32,19 +33,25 @@ export default {
     }
   },
   methods: {
-    sendUser() {
-      axios.post('/api/auth/login',
-          JSON.stringify(this.user), {
-            headers:{'Content-Type': 'application/json; charset=utf-8'}
+    onSubmit(){
+      this.$store.dispatch(`authModule/onLogin`, {
+        username: this.user.username,
+        password: this.user.password
+      }).then(() => {
+        this.$router.push({name: 'profile'})
+      }).catch(error => {
+        console.error(error)
+      });
+    },
+    logout() {
+      this.$store.dispatch('authModule/onLogout')
+          .then(() => {
+            location.reload();
           })
-          .then(response => {
-            this.res = response;
-            console.log('Log ' + response);
-          })
-          .catch(error => {
-            alert(error);
-          });
     }
+  },
+  computed:{
+    ...mapGetters(['authModule/getUsername'])
   }
 }
 </script>

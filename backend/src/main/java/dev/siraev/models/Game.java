@@ -1,5 +1,10 @@
 package dev.siraev.models;
 
+import dev.siraev.repository.ReviewRepository;
+import dev.siraev.services.ReviewService;
+import dev.siraev.services.ReviewServiceDB;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 
 @Entity
@@ -12,47 +17,41 @@ public class Game {
     @Column(name = "description")
     private String description;
     @Column(name = "avg_rate")
-    private float avgRate;
+    private int avgRate;
     @Column(name = "icon_url")
     private String iconURL;
-
     public Game(){}
-    public Game(Long id, String name, String description, float avgRate, String iconURL) {
+    public Game(Long id, String name, String description, int avgRate, String iconURL) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.avgRate = avgRate;
         this.iconURL = iconURL;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
     public Long getId() {
         return id;
     }
-
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-
     public String getDescription() {
         return description;
     }
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public float getAvgRate() {
+    public int getAvgRate() {
         return avgRate;
     }
-    public void setAvgRate(float avgRate) {
+    public void setAvgRate(int avgRate) {
         this.avgRate = avgRate;
     }
-
     public String getIconURL() {
         return iconURL;
     }

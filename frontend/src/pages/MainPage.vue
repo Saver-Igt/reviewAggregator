@@ -8,7 +8,6 @@
         <Slider title="Best games"/>
       </section>
     </div>
-
   </div>
 </template>
 

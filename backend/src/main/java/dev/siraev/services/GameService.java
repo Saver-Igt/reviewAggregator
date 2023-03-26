@@ -14,4 +14,6 @@ public interface  GameService {
     Game editGame(Long id, Game game) throws Exception;
 
     void deleteGame(Long id) throws Exception;
+
+    void changeAvgRating(Long id, int rating) throws Exception;
 }

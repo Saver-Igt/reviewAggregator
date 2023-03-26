@@ -14,6 +14,7 @@
 <script>
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
+import {mapActions} from "vuex";
 
 export default {
   name: 'App',
@@ -21,9 +22,15 @@ export default {
     Header,
     Footer
   },
+  methods:{
+    ...mapActions({
+      load: 'loadGames',
+      loadReviews: 'loadReviews'
+    })
+  },
   created() {
-    this.$store.dispatch('loadGames')
-    this.$store.dispatch('loadReviews')
+    this.load();
+    this.loadReviews();
   }
 }
 </script>

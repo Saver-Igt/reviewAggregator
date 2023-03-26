@@ -42,6 +42,8 @@ public class AuthRestController {
             response.put("username", request.getUsername());
             response.put("token", token);
 
+            System.out.println("User authenticated!");
+
             return ResponseEntity.ok(response);
         }catch(AuthenticationException e){
             e.printStackTrace();

@@ -18,7 +18,7 @@ public class Review {
     private Long gameId;
     @Column(name = "score")
     @JsonView(Views.Review.class)
-    private float score;
+    private int score;
     @Column(name = "comment")
     @JsonView(Views.Review.class)
     private String comment;
@@ -27,7 +27,7 @@ public class Review {
     @JsonView(Views.Review.class)
     private User user;
     public Review(){}
-    public Review(Long userId, Long gameId, float score, String comment, User user) {
+    public Review(Long userId, Long gameId, int score, String comment, User user) {
         this.userId = userId;
         this.gameId = gameId;
         this.score = score;
@@ -46,10 +46,10 @@ public class Review {
     public void setGameId(Long gameId) {
         this.gameId = gameId;
     }
-    public float getScore() {
+    public int getScore() {
         return score;
     }
-    public void setScore(float score) {
+    public void setScore(int score) {
         this.score = score;
     }
     public String getComment() {
