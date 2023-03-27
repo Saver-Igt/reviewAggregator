@@ -6,19 +6,29 @@ export default {
     state(){
         return {
             credentials:{
+                userId: localStorage.getItem('id') || null,
                 token: localStorage.getItem('token') || null,
                 username: localStorage.getItem('username') || null
             }
         }
     },
-
     getters:{
         getUsername(state){
             return state.credentials.username
+        },
+        getUserId(state){
+            return state.credentials.userId
         }
     },
-
     mutations:{
+        SET_USER_ID(state,id){
+          state.credentials.userId = id;
+          localStorage.setItem('id', id)
+        },
+        DELETE_ID(state){
+            state.credentials.userId = null;
+            localStorage.removeItem('id');
+        },
         SET_TOKEN(state, token){
             state.credentials.token = token;
             localStorage.setItem('token', token);
@@ -42,12 +52,14 @@ export default {
                     console.log('res ', res.data)
                     commit('SET_TOKEN', res.data.token);
                     commit('SET_USERNAME', res.data.username);
+                    commit('SET_USER_ID', res.data.userId)
                     DefaultAPIInstance.defaults.headers['authorization'] = `Bearer ${res.token}`;
                 })
         },
         onLogout({commit}){
             commit('DELETE_USERNAME');
             commit('DELETE_TOKEN');
+            commit('DELETE_ID');
             delete DefaultAPIInstance.defaults.headers['authorization'];
         }
     }

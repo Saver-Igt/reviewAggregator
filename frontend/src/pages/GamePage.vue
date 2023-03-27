@@ -20,30 +20,29 @@
               nobis adipisci dolore in ullam sapiente ipsam ipsum pariatur nemo ratione corrupti culpa.</p>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, aut ea corporis nam porro, eum odit error
               nobis adipisci dolore in ullam sapiente ipsam ipsum pariatur nemo ratione corrupti culpa.</p>
-            
           </div>
         </div>
       </section>
       <section>
-
         <h2>Your review</h2>
-        <div class="mb-3">
-          <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
-          <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,..." v-model="review.score">
-        </div>
-        <div class="mb-3">
-          <label for="exampleFormControlInput2" class="form-label">Enter user id</label>
-          <input type="number" class="form-control" id="exampleFormControlInput2" placeholder="1,2,3,..." v-model="review.userId">
-        </div>
-        <div class="mb-3 form-floating">
-          <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" v-model="review.comment"></textarea>
-          <label for="floatingTextarea">Comments</label>
-        </div>
-        <div>
-          <button class="btn btn-success" @click="submit">
-            Publish
-          </button>
-        </div>
+        <section v-if="isUserAuth && !alreadyReviewed">
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
+            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,..." v-model="review.score">
+          </div>
+          <div class="mb-3 form-floating">
+            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" v-model="review.comment"></textarea>
+            <label for="floatingTextarea">Comments</label>
+          </div>
+          <div>
+            <button class="btn btn-success" @click="submit">
+              Publish
+            </button>
+          </div>
+        </section>
+        <section v-else>
+          You
+        </section>
       </section>
       <section>
         <Reviews v-bind:gameId = game.id />
@@ -54,7 +53,6 @@
 
 <script>
 import Reviews from "@/components/Reviews.vue";
-import {mapActions, mapGetters} from "vuex";
 export default {
   name: 'GamePage',
   components:{
@@ -72,16 +70,33 @@ export default {
     }
   },
   methods:{
-    ...mapActions(['addReview']),
     submit: function () {
       this.review.gameId = this.id;
-      this.addReview(this.review);
+      this.review.userId = this.$store.getters['authModule/getUserId'];
+      this.$store.dispatch('reviewsModule/addReview', this.review)
     }
   },
   computed:{
-    ...mapGetters(['getGame']),
     game(){
-      return this.getGame(parseInt(this.id))
+      return this.$store.getters['gamesModule/getGame'](parseInt(this.id))
+    },
+    isUserAuth(){
+      if(this.$store.getters['authModule/getUsername']){
+        return true;
+      }else{
+        return false;
+      }
+    },
+    userId(){
+      return this.$store.getters['authModule/getUserId']
+    },
+    alreadyReviewed(){
+      console.log(this.$store.getters['reviewsModule/getReview'](parseInt(this.id),this.userId))
+      if(this.$store.getters['reviewsModule/getReview'](parseInt(this.id), this.$store.getters['authModule/getUserId'])){
+        return true;
+      }else{
+        return false;
+      }
     }
   }
 }

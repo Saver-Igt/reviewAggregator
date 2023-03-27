@@ -6,6 +6,7 @@ import FAQPage from '../pages/FaqPage.vue'
 import AllGamesPage from "@/pages/AllGamesPage.vue";
 import LoginPage from "@/pages/loginPage.vue";
 import Profile from "@/pages/Profile.vue";
+import NotFound from "@/pages/NotFound.vue";
 
 const routes = [
     {
@@ -46,7 +47,7 @@ const routes = [
     },
 
     // otherwise redirect to home
-    { path: '/:pathMatch(.*)*', redirect: '/' }
+    { path: '/:pathMatch(.*)*', component: NotFound }
 ]
 
 const router = createRouter({

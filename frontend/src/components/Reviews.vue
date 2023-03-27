@@ -38,7 +38,6 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
 export default {
   name: 'vReviews',
   props:{
@@ -51,9 +50,8 @@ export default {
   methods:{
   },
   computed:{
-    ...mapGetters(['getReviewsByGameId']),
     reviews() {
-      return this.getReviewsByGameId(parseInt(this.gameId))
+      return this.$store.getters['reviewsModule/getReviewsByGameId'](this.gameId);
     },
     isReviewsEmpty(){
       if (this.reviews && this.reviews.length > 0){

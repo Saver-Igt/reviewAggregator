@@ -41,6 +41,7 @@ public class AuthRestController {
             User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
             String token = jwtTokenProvider.createToken(request.getUsername(), user.getRole().name());
             Map<Object, Object> response = new HashMap<>();
+            response.put("userId", user.getId());
             response.put("username", request.getUsername());
             response.put("token", token);
 

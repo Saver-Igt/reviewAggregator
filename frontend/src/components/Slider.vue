@@ -37,7 +37,6 @@
 </template>
 <script>
 import vSliderItem from './SliderItem.vue';
-import {mapGetters} from "vuex";
 export default{
   name:'vSlider',
   components:{
@@ -98,12 +97,11 @@ export default{
     }
   },
   computed:{
-    ...mapGetters(['getGames', 'getSortedGames']),
     sortedGames() {
-      return this.getSortedGames;
+      return this.$store.getters['gamesModule/getSortedGames']
     },
     games(){
-      return this.getGames;
+      return this.$store.getters['gamesModule/getGames'];
     }
   },
 }

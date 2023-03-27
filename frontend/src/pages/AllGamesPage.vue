@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted() {
-    this.games = this.$store.getters.getGames
+    this.games = this.$store.getters['gamesModule/getGames']
   }
 }
 </script>
