@@ -24,13 +24,4 @@ public class AuthenticationController {
         return userService.getUsers();
     }
      */
-    @GetMapping("/login")
-    public String getLoginPage() {
-        return "login";
-    }
-
-    @GetMapping("/success")
-    public String getSuccessPage() {
-        return "success";
-    }
 }

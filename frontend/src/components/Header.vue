@@ -38,12 +38,24 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-primary" type="submit">Find</button>
           </form>
-          <button type="button" class="btn btn-success m-2"
+          <button type="button" class="btn btn-primary m-2" v-if="!username"
                   @click="$router.push({name:'login'})">
             <svg class="bi" width="24" height="24" fill="currentColor">
               <use xlink:href="../assets/bootstrap-icons.svg#person-circle"/>
             </svg>
           </button>
+          <div class="dropdown-center" v-if="username">
+            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <svg class="bi" width="24" height="24" fill="currentColor">
+                <use xlink:href="../assets/bootstrap-icons.svg#person"/>
+              </svg>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><h6 class="dropdown-header">User</h6></li>
+              <li><a class="dropdown-item" href="#" @click="openProfile">Profile</a></li>
+              <li><a class="dropdown-item" href="#" @click="logout">Logout</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -53,6 +65,22 @@
 <script>
 export default{
   name:'v-header',
+  computed:{
+    username(){
+      return this.$store.getters['authModule/getUsername'];
+    }
+  },
+  methods:{
+    logout() {
+      this.$store.dispatch('authModule/onLogout')
+          .then(() => {
+            location.reload();
+          })
+    },
+    openProfile(){
+      this.$router.push({name: 'profile'});
+    }
+  }
 }
 </script>
 <style>

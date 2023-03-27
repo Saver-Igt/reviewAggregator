@@ -17,12 +17,10 @@
         <button class="btn btn-primary">Submit</button>
         <h4><a href="/registration">Зарегистрироваться</a></h4>
       </form>
-      <button class="btn btn-primary" @click="logout">logout</button>
     </section>
   </div>
 </template>
 <script>
-import {mapGetters} from "vuex";
 export default {
   data(){
     return{
@@ -42,16 +40,7 @@ export default {
       }).catch(error => {
         console.error(error)
       });
-    },
-    logout() {
-      this.$store.dispatch('authModule/onLogout')
-          .then(() => {
-            location.reload();
-          })
     }
-  },
-  computed:{
-    ...mapGetters(['authModule/getUsername'])
   }
 }
 </script>

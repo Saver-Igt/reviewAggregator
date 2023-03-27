@@ -21,6 +21,7 @@ public class User{
     @JsonView(Views.UserView.class)
     private String lastName;
     @Enumerated(value = EnumType.STRING)
+    @JsonView(Views.UserView.class)
     @Column(name = "role")
     private Role role;
     @Enumerated(value = EnumType.STRING)

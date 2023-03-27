@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 import MainPage from '../pages/MainPage.vue'
 import GamePage from '../pages/GamePage.vue'
 import ReviewsPage from '../pages/ReviewsPage.vue'
-import FAQPage from '../pages/faqPage.vue'
+import FAQPage from '../pages/FaqPage.vue'
 import AllGamesPage from "@/pages/AllGamesPage.vue";
 import LoginPage from "@/pages/loginPage.vue";
 import Profile from "@/pages/Profile.vue";

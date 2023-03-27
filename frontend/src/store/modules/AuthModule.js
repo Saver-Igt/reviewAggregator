@@ -13,7 +13,9 @@ export default {
     },
 
     getters:{
-        getUsername: (state) => state.credentials.username,
+        getUsername(state){
+            return state.credentials.username
+        }
     },
 
     mutations:{
