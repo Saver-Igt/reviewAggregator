@@ -26,13 +26,18 @@ public class Review {
     @JoinColumn(name="user_id", nullable=false, insertable = false, updatable = false)
     @JsonView(Views.Review.class)
     private User user;
+    @ManyToOne
+    @JoinColumn(name="game_id", nullable=false, insertable = false, updatable = false)
+    @JsonView(Views.Review.class)
+    private Game game;
     public Review(){}
-    public Review(Long userId, Long gameId, int score, String comment, User user) {
+    public Review(Long userId, Long gameId, int score, String comment, User user, Game game) {
         this.userId = userId;
         this.gameId = gameId;
         this.score = score;
         this.comment = comment;
         this.user = user;
+        this.game = game;
     }
     public Long getUserId() {
         return userId;
@@ -63,5 +68,11 @@ public class Review {
     }
     public void setUser(User user) {
         this.user = user;
+    }
+    public Game getGame() {
+        return game;
+    }
+    public void setGame(Game game) {
+        this.game = game;
     }
 }

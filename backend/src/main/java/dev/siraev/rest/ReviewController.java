@@ -34,6 +34,11 @@ public class ReviewController {
     public @ResponseBody List<Review> getReviewsByGame(@PathVariable Long gameId)throws Exception{
         return reviewService.getReviewsByGameId(gameId);
     }
+    @GetMapping("/u{userId}")
+    @JsonView(Views.Review.class)
+    public @ResponseBody List<Review> getReviewByUserId(@PathVariable Long userId) throws Exception{
+        return reviewService.getReviewsByUserId(userId);
+    }
     @PostMapping
     public @ResponseBody Review addReview(@RequestBody Review review) throws Exception{
         return reviewService.addReview(review);

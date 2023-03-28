@@ -37,6 +37,11 @@ public class ReviewServiceDB implements ReviewService {
     }
 
     @Override
+    public List<Review> getReviewsByUserId(Long userId) throws Exception {
+        return reviewRepository.findByUserId(userId);
+    }
+
+    @Override
     public Review editReview(Long userId, Long gameId, Review review) throws Exception {
         Review findReview = getReview(userId, gameId);
         findReview.setScore(review.getScore());

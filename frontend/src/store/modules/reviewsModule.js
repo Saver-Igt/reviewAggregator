@@ -46,6 +46,9 @@ export default{
         },
         getReview: (state) => (gameId, userId) => {
             return state.reviews.find(review => review.gameId === gameId && review.userId === userId)
+        },
+        getReviewByUserId: (state) => (userId) =>{
+            return state.reviews.filter(review => review.userId === userId);
         }
     }
 }

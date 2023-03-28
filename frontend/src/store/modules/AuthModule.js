@@ -49,7 +49,6 @@ export default {
     actions:{
         onLogin({commit}, {username, password}){
             AuthAPI.login(username,password).then((res) => {
-                    console.log('res ', res.data)
                     commit('SET_TOKEN', res.data.token);
                     commit('SET_USERNAME', res.data.username);
                     commit('SET_USER_ID', res.data.userId)

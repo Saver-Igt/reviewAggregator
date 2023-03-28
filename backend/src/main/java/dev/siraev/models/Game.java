@@ -1,5 +1,6 @@
 package dev.siraev.models;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import dev.siraev.repository.ReviewRepository;
 import dev.siraev.services.ReviewService;
 import dev.siraev.services.ReviewServiceDB;
@@ -13,12 +14,16 @@ public class Game {
     @Id
     private Long id;
     @Column(name = "name")
+    @JsonView(Views.Review.class)
     private String name;
     @Column(name = "description")
+    @JsonView(Views.Review.class)
     private String description;
     @Column(name = "avg_rate")
+    @JsonView(Views.Review.class)
     private int avgRate;
     @Column(name = "icon_url")
+    @JsonView(Views.Review.class)
     private String iconURL;
     public Game(){}
     public Game(Long id, String name, String description, int avgRate, String iconURL) {

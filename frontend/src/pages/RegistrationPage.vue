@@ -1,13 +1,14 @@
 <template>
-  <div class="container-xxl mt-5">
-    <section>
-      <form @submit="onSubmit">
+  <div class="container-xxl">
+    <div class="mt-5 mb-5">
+      <h1>Registration</h1>
+      <form>
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="username" class="form-control"
                  id="username" name="username"
                  v-model="user.username"
-                 >
+          >
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
@@ -23,29 +24,22 @@
           </div>
         </div>
       </form>
-    </section>
+    </div>
   </div>
 </template>
 <script>
 export default {
+  name: 'registrationPage',
   data(){
     return{
       user:{
         username:null,
-        password:null
+        password:null,
+        firsName: null,
+        lastName: null,
+        age:null,
+        gender:null
       }
-    }
-  },
-  methods: {
-    onSubmit(){
-      this.$store.dispatch(`authModule/onLogin`, {
-        username: this.user.username,
-        password: this.user.password
-      }).then(() => {
-        this.$router.push({name: 'profile'})
-      }).catch(error => {
-        console.error(error)
-      });
     }
   }
 }

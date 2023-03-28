@@ -40,8 +40,29 @@
             </button>
           </div>
         </section>
-        <section v-else>
-          You
+        <section v-if="alreadyReviewed">
+          <div class="shadow mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-1 text-center">
+                    <svg class="bi" width="75" height="75" fill="currentColor">
+                      <use xlink:href="../assets/bootstrap-icons.svg#person-fill"/>
+                    </svg>
+                    <div class="">{{username}}</div>
+                  </div>
+                  <div class="col-10">
+                    <h4 class="card-title"></h4>
+                    <div class="fs-4 fw-bold mb-2">Score: {{getReview.score}}</div>
+                    <div class="fs-5 fw-bold">Comment: {{getReview.comment}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section v-if="!isUserAuth">
+          login pls
         </section>
       </section>
       <section>
@@ -71,9 +92,12 @@ export default {
   },
   methods:{
     submit: function () {
-      this.review.gameId = this.id;
-      this.review.userId = this.$store.getters['authModule/getUserId'];
+      this.setGameAndUserId();
       this.$store.dispatch('reviewsModule/addReview', this.review)
+    },
+    setGameAndUserId: function(){
+      this.review.userId = this.$store.getters['authModule/getUserId'];
+      this.review.gameId = this.id;
     }
   },
   computed:{
@@ -87,13 +111,22 @@ export default {
         return false;
       }
     },
+    getReview(){
+      return this.$store.getters['reviewsModule/getReview'](parseInt(this.review.gameId), parseInt(this.review.userId));
+    },
+    username(){
+      return this.$store.getters['authModule/getUsername'];
+    },
     userId(){
       return this.$store.getters['authModule/getUserId']
     },
     alreadyReviewed(){
-      console.log(this.$store.getters['reviewsModule/getReview'](parseInt(this.id),this.userId))
-      if(this.$store.getters['reviewsModule/getReview'](parseInt(this.id), this.$store.getters['authModule/getUserId'])){
-        return true;
+      this.setGameAndUserId();
+      if(this.review.gameId && this.review.userId){
+        if(this.getReview){
+          return true;
+        }
+        return false;
       }else{
         return false;
       }
