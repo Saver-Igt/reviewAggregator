@@ -27,7 +27,30 @@ export default{
                     console.log("Review added" + response);
                 })
             }catch (error){
-                console.error(error)
+                console.error(error);
+            }
+        },
+        async changeReview({commit}, review){
+            try {
+                await axios.put('/api/reviews/u' + parseInt(review.userId) + '/g' + parseInt(review.gameId),
+                    JSON.stringify(review), {headers:{'Content-Type': 'application/json; charset=utf-8'}})
+                    .then((response) => {
+                        commit('set');
+                        console.log('review change: ',response)
+                    })
+            }catch (error){
+                console.error(error);
+            }
+        },
+        async deleteReview({commit}, review){
+            try {
+                await axios.delete('/api/reviews/u' + parseInt(review.userId) + '/g' + parseInt(review.gameId))
+                    .then((response) => {
+                        commit('set');
+                        console.log('review deleted: ',response)
+                    })
+            }catch (error){
+                console.error(error);
             }
         }
     },
@@ -37,6 +60,9 @@ export default{
         },
         ADD_REVIEW: (state, reviews) => {
             state.reviews.push(reviews);
+        },
+        set(){
+
         }
     },
     getters:{

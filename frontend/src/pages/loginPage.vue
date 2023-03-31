@@ -19,7 +19,7 @@
             <button class="btn btn-primary">Submit</button>
           </div>
           <div class="col">
-            <button class="btn btn-primary">Registration</button>
+            <button class="btn btn-primary" @click="this.$router.push({name: 'registration'})">Registration</button>
           </div>
         </div>
       </form>

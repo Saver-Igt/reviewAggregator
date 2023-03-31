@@ -8,8 +8,8 @@
             <img :src="require('../' + review.game.iconURL)" width="300" height="200" class="shadow"/>
           </div>
           <div class="col">
-            <h4 class="mt-3">{{review.game.name}}</h4>
-            <h5 class="mt-3">score: {{review.score}}</h5>
+            <h3 class="mt-3">{{review.game.name}}</h3>
+            <h4 class="mt-3" :style="getColor(review)">score: {{review.score}}</h4>
             <h5>comment: {{review.comment}}</h5>
           </div>
         </div>
@@ -37,7 +37,16 @@ export default {
         name: 'game',
         params: {id: gameId}
       });
-    }
+    },
+    getColor(review){
+      if (review.score < 30){
+        return "color: red";
+      } else if (review.score > 75){
+        return "color: green";
+      }else {
+        return "color: yellow";
+      }
+    },
   }
 }
 </script>
