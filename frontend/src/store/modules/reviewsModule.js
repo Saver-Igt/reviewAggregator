@@ -35,8 +35,8 @@ export default{
                 await axios.put('/api/reviews/u' + parseInt(review.userId) + '/g' + parseInt(review.gameId),
                     JSON.stringify(review), {headers:{'Content-Type': 'application/json; charset=utf-8'}})
                     .then((response) => {
-                        commit('set');
-                        console.log('review change: ',response)
+                        commit('UPDATE_REVIEW', response.data);
+                        console.log('review change: ',response.data)
                     })
             }catch (error){
                 console.error(error);
@@ -46,7 +46,7 @@ export default{
             try {
                 await axios.delete('/api/reviews/u' + parseInt(review.userId) + '/g' + parseInt(review.gameId))
                     .then((response) => {
-                        commit('set');
+                        commit('DELETE_REVIEW', review);
                         console.log('review deleted: ',response)
                     })
             }catch (error){
@@ -61,9 +61,19 @@ export default{
         ADD_REVIEW: (state, reviews) => {
             state.reviews.push(reviews);
         },
-        set(){
-
-        }
+        UPDATE_REVIEW(state, payload){
+            state.reviews = state.reviews.map(review => {
+                if (review.userId === payload.userId && review.gameId === payload.gameId) {
+                    return Object.assign({}, review, payload.data)
+                }
+                return review
+            })
+        },
+        DELETE_REVIEW: (state, payload) =>{
+            const index = state.reviews.findIndex(review => review.userId == payload.userId && review.gameId == payload.gameId);
+            state.reviews.splice(index, 1);
+        },
+        ser(){}
     },
     getters:{
         getReviews(state){return state.reviews},

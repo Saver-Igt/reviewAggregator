@@ -49,6 +49,8 @@
   </div>
 </template>
 <script>
+
+
 export default {
   name: 'registrationPage',
   data(){
@@ -63,6 +65,9 @@ export default {
         gender:null
       }
     }
+  },
+  methods:{
+
   }
 }
 </script>

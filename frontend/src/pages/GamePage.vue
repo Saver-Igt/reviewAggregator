@@ -35,13 +35,13 @@
             <label for="floatingTextarea">Comments</label>
           </div>
           <div>
-            <button class="btn btn-success" @click="submit">
+            <button class="btn btn-success" @click="publishReview">
               Publish
             </button>
           </div>
         </section>
         <section v-if="alreadyReviewed">
-          <div class="shadow mb-4 review-item" data-bs-toggle="modal" data-bs-target="#changeModal">
+          <div class="mb-4 review-item" data-bs-toggle="modal" data-bs-target="#changeModal">
             <div class="card">
               <div class="card-body">
                 <div class="row">
@@ -134,10 +134,13 @@ export default {
       }
     }
   },
+  watch:{
+
+  },
   methods:{
-    submit: function () {
+    publishReview() {
       this.setGameAndUserId();
-      this.$store.dispatch('reviewsModule/addReview', this.review)
+      this.$store.dispatch('reviewsModule/addReview', this.review);
     },
     setGameAndUserId: function(){
       this.review.userId = this.$store.getters['authModule/getUserId'];
@@ -146,6 +149,7 @@ export default {
     changeReview(){
       this.setGameAndUserId();
       this.$store.dispatch('reviewsModule/changeReview', this.review);
+      location.reload();
     },
     deleteReview(){
       this.setGameAndUserId();
@@ -191,6 +195,8 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .review-item{
+  border-radius:7px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   overflow: hidden;
   transition: all .3s;
   transform: scale(1);

@@ -4,21 +4,16 @@ import GamePage from '../pages/GamePage.vue'
 import ReviewsPage from '../pages/ReviewsPage.vue'
 import FAQPage from '../pages/FaqPage.vue'
 import AllGamesPage from "@/pages/AllGamesPage.vue";
-import LoginPage from "@/pages/loginPage.vue";
 import Profile from "@/pages/Profile.vue";
 import NotFound from "@/pages/NotFound.vue";
 import registrationPage from "@/pages/RegistrationPage.vue";
+//import store from "@/store";
 
 const routes = [
     {
         path: '/',
         name: 'mainPage',
         component: MainPage
-    },
-    {
-        path: '/login',
-        name: 'login',
-        component: LoginPage
     },
     {
         path: '/games',
@@ -60,4 +55,14 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 });
+/*
+router.beforeEach((to, from,next) => {
+    if(!store.getters['authModule/getUserId'] && to.name==='games'){
+        next({name: 'login'})
+    }else {
+        next();
+    }
+});
+
+ */
 export default router;

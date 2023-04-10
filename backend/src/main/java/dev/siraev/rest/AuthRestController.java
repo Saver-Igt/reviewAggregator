@@ -51,6 +51,11 @@ public class AuthRestController {
             return new ResponseEntity<>("Invalid username/password combination", HttpStatus.FORBIDDEN);
         }
     }
+    @PostMapping("/auth/registration")
+    @ResponseStatus(HttpStatus.OK)
+    public void registration(@RequestBody User user){
+
+    }
     @PostMapping("/auth/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response){
         SecurityContextLogoutHandler securityContextLogoutHandler = new SecurityContextLogoutHandler();

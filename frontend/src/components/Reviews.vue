@@ -8,7 +8,7 @@
       <div v-else>
         <ul class="ps-0 mt-4" v-if="this.reviews">
           <li v-for="review in reviews" :key="review.userId">
-            <div class="shadow mb-4">
+            <div class="shadow rounded mb-4">
               <div class="card">
                 <div class="card-body">
                   <div class="row">

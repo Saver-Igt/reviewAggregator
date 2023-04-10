@@ -39,7 +39,7 @@
             <button class="btn btn-primary" type="submit">Find</button>
           </form>
           <button type="button" class="btn btn-primary m-2" v-if="!username"
-                  @click="$router.push({name:'login'})">
+                  data-bs-toggle="modal" data-bs-target="#loginModal">
             <svg class="bi" width="24" height="24" fill="currentColor">
               <use xlink:href="../assets/bootstrap-icons.svg#person-circle"/>
             </svg>
@@ -51,7 +51,7 @@
               </svg>
             </button>
             <ul class="dropdown-menu dropdown-menu-end">
-              <li><h6 class="dropdown-header">User</h6></li>
+              <li><h6 class="dropdown-header">{{username}}</h6></li>
               <li><a class="dropdown-item" href="#" @click="openProfile">Profile</a></li>
               <li><a class="dropdown-item" href="#" @click="logout">Logout</a></li>
             </ul>
@@ -60,11 +60,16 @@
       </div>
     </nav>
   </header>
+  <login-pop-up/>
 </template>
 
 <script>
+import loginPopUp from "@/components/loginPopUp.vue";
 export default{
   name:'v-header',
+  components:{
+    loginPopUp
+  },
   computed:{
     username(){
       return this.$store.getters['authModule/getUsername'];
