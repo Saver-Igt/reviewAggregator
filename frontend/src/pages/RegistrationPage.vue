@@ -1,42 +1,43 @@
 <template>
-  <div class="container-xxl">
-    <div class="mt-5 mb-5">
+  <div class="">
+    <div class="container-xxl mt-5 mb-5">
       <h1 class="mb-4">Registration</h1>
-      <form>
+      <form v-on:submit.prevent="createNewUser">
+        <div id="liveAlertPlaceholder"></div>
         <div class="mb-3">
           <label for="username" class="form-label">Username</label>
           <input type="username" class="form-control"
-                 id="username" name="username"
+                 name="username"
                  v-model="user.username">
         </div>
         <div class="mb-3">
           <label for="password" class="form-label">Password</label>
-          <input type="password" class="form-control" id="password" name="password"
+          <input type="password" class="form-control" name="password"
                  v-model="user.password">
         </div>
         <div class="mb-3">
           <label for="confPassword" class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" id="confPassword" name="confPassword"
+          <input type="password" class="form-control" name="confPassword"
                  v-model="user.confirmPassword">
         </div>
         <div class="mb-3">
           <label for="firstname" class="form-label">First name</label>
-          <input type="text" class="form-control" id="firstname" name="firstname"
-                 v-model="user.firsName">
+          <input type="text" class="form-control" name="firstname"
+                 v-model="user.firstName">
         </div>
         <div class="mb-3">
           <label for="lastName" class="form-label">Last name</label>
-          <input type="text" class="form-control" id="lastName" name="lastName"
+          <input type="text" class="form-control" name="lastName"
                  v-model="user.lastName">
         </div>
         <div class="mb-3">
           <label for="age" class="form-label">Age</label>
-          <input type="text" class="form-control" id="age" name="age"
+          <input type="text" class="form-control" name="age"
                  v-model="user.age">
         </div>
         <div class="mb-3">
           <label for="gender" class="form-label">Gender</label>
-          <input type="text" class="form-control" id="gender" name="gender"
+          <input type="text" class="form-control" name="gender"
                  v-model="user.gender">
         </div>
         <div class="row">
@@ -49,7 +50,7 @@
   </div>
 </template>
 <script>
-
+import axios from "axios";
 
 export default {
   name: 'registrationPage',
@@ -59,7 +60,7 @@ export default {
         username:null,
         password:null,
         confirmPassword:null,
-        firsName: null,
+        firstName: null,
         lastName: null,
         age:null,
         gender:null
@@ -67,7 +68,35 @@ export default {
     }
   },
   methods:{
+    async createNewUser(){
+        await axios.post('/api/registration',
+            JSON.stringify(this.user), {
+              headers:{'Content-Type': 'application/json; charset=utf-8'}
+        })
+          .then(response => {
+            console.log('Res: ', response.data);
+          })
+          .catch (error =>{
+            console.error(error.response.data);
+            this.triggerError(error.response.data);
+          })
+    },
+    triggerError(errorMessage){
+      const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
 
+      const alert = (message, type) => {
+        const wrapper = document.createElement('div')
+        wrapper.innerHTML = [
+          `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+          `   <div>${message}</div>`,
+          '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+          '</div>'
+        ].join('')
+
+        alertPlaceholder.append(wrapper)
+      }
+      alert(errorMessage, 'danger');
+    }
   }
 }
 </script>

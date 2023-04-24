@@ -46,11 +46,9 @@ const routes = [
         name: 'registration',
         component: registrationPage
     },
-
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', component: NotFound }
 ]
-
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes

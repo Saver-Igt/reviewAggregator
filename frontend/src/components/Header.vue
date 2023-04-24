@@ -38,23 +38,20 @@
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-primary" type="submit">Find</button>
           </form>
+          <!--For login -->
           <button type="button" class="btn btn-primary m-2" v-if="!username"
                   data-bs-toggle="modal" data-bs-target="#loginModal">
             <svg class="bi" width="24" height="24" fill="currentColor">
               <use xlink:href="../assets/bootstrap-icons.svg#person-circle"/>
             </svg>
           </button>
-          <div class="dropdown-center" v-if="username">
-            <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <!-- For already login-->
+          <div class="" v-if="username">
+            <button class="btn btn-success " type="button" @click="openProfile">
               <svg class="bi" width="24" height="24" fill="currentColor">
                 <use xlink:href="../assets/bootstrap-icons.svg#person"/>
               </svg>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-              <li><h6 class="dropdown-header">{{username}}</h6></li>
-              <li><a class="dropdown-item" href="#" @click="openProfile">Profile</a></li>
-              <li><a class="dropdown-item" href="#" @click="logout">Logout</a></li>
-            </ul>
           </div>
         </div>
       </div>
@@ -76,12 +73,6 @@ export default{
     }
   },
   methods:{
-    logout() {
-      this.$store.dispatch('authModule/onLogout')
-          .then(() => {
-            location.reload();
-          })
-    },
     openProfile(){
       this.$router.push({name: 'profile'});
     }

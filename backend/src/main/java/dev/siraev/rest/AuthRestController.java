@@ -1,9 +1,7 @@
 package dev.siraev.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import dev.siraev.models.AuthenticationRequestDTO;
-import dev.siraev.models.User;
-import dev.siraev.models.Views;
+import dev.siraev.models.*;
 import dev.siraev.repository.UserRepository;
 import dev.siraev.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
@@ -12,33 +10,40 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api")
 public class AuthRestController {
     private final AuthenticationManager authenticationManager;
-    private UserRepository userRepository;
-    private JwtTokenProvider jwtTokenProvider;
+    private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthRestController(AuthenticationManager authenticationManager, UserRepository userRepository, JwtTokenProvider jwtTokenProvider) {
+    public AuthRestController(AuthenticationManager authenticationManager,
+                              UserRepository userRepository,
+                              JwtTokenProvider jwtTokenProvider,
+                              PasswordEncoder passwordEncoder) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.jwtTokenProvider = jwtTokenProvider;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @PostMapping(value = "/auth/login")
     public ResponseEntity<?> authentication(@RequestBody AuthenticationRequestDTO request){
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword()));
-            User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("User doesn't exists"));
+            User user = userRepository.findByUsername(request.getUsername());
+            if (user == null){
+                return new ResponseEntity<>("Invalid username/password combination", HttpStatus.FORBIDDEN);
+            }
             String token = jwtTokenProvider.createToken(request.getUsername(), user.getRole().name());
             Map<Object, Object> response = new HashMap<>();
             response.put("userId", user.getId());
@@ -51,10 +56,18 @@ public class AuthRestController {
             return new ResponseEntity<>("Invalid username/password combination", HttpStatus.FORBIDDEN);
         }
     }
-    @PostMapping("/auth/registration")
-    @ResponseStatus(HttpStatus.OK)
-    public void registration(@RequestBody User user){
+    @PostMapping("/registration")
+    public ResponseEntity<?> registration(@RequestBody User user){
+        User findUserFromDb = userRepository.findByUsername(user.getUsername());
+        if (findUserFromDb != null){
+            return new ResponseEntity<>("This username is already taken. Try another username", HttpStatus.BAD_REQUEST);
+        }
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(Role.USER);
+        user.setStatus(Status.ACTIVE);
 
+        userRepository.save(user);
+        return new ResponseEntity<>("Success!", HttpStatus.OK);
     }
     @PostMapping("/auth/logout")
     public void logout(HttpServletRequest request, HttpServletResponse response){

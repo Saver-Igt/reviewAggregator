@@ -26,19 +26,21 @@
       <section>
         <h2>Your review</h2>
         <section v-if="isUserAuth && !alreadyReviewed">
-          <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
-            <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,..." v-model="review.score">
-          </div>
-          <div class="mb-3 form-floating">
-            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" v-model="review.comment"></textarea>
-            <label for="floatingTextarea">Comments</label>
-          </div>
-          <div>
-            <button class="btn btn-success" @click="publishReview">
-              Publish
-            </button>
-          </div>
+          <form>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Enter the score</label>
+              <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1,2,3,..." v-model="review.score">
+            </div>
+            <div class="mb-3 form-floating">
+              <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea" v-model="review.comment"></textarea>
+              <label for="floatingTextarea">Comments</label>
+            </div>
+            <div>
+              <button class="btn btn-success" @click="publishReview">
+                Publish
+              </button>
+            </div>
+          </form>
         </section>
         <section v-if="alreadyReviewed">
           <div class="mb-4 review-item" data-bs-toggle="modal" data-bs-target="#changeModal">
@@ -133,9 +135,6 @@ export default {
         comment:null,
       }
     }
-  },
-  watch:{
-
   },
   methods:{
     publishReview() {

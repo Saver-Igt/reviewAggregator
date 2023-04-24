@@ -14,6 +14,20 @@
           <p>Age: {{user.age}}</p>
           <p>Gender: {{user.gender}}</p>
         </div>
+        <div>
+          <button class="btn btn-danger " type="button" @click="logout">
+            <div class="row">
+              <div class="col-3">
+                <svg class="bi" width="30" height="30" fill="currentColor">
+                  <use xlink:href="../assets/bootstrap-icons.svg#person"/>
+                </svg>
+              </div>
+              <div class="col">
+                <h4>Logout</h4>
+              </div>
+            </div>
+          </button>
+        </div>
       </div>
       <section v-else>
         <h1 class="text-center mb-5">Loading ...</h1>
@@ -27,7 +41,6 @@
 </template>
 <script>
 import axios from "axios";
-
 export default {
   name: 'ProfilePage',
   data(){
@@ -55,7 +68,13 @@ export default {
       }catch (error){
         console.error(error)
       }
-    }
+    },
+    logout() {
+      this.$store.dispatch('authModule/onLogout')
+          .then(() => {
+            location.reload();
+          });
+    },
   }
 }
 </script>
