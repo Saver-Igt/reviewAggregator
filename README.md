@@ -15,18 +15,22 @@
 # Stack
   
 ## backend
- 
-Java 8
-Spring Boot
-Spring Boot Data Jpa
-Spring Boot Security
-Postgres DataBase
   
+ <ul>
+    <li>Java 8</li>
+    <li>Spring Boot</li>
+    <li>Spring Boot Data Jpa</li>
+    <li>Spring Boot Security</li>
+    <li>Postgres DataBase</li>
+</ul>
+ 
 ## frontend
-  Vue
-  VueRouter
-  VueStore
-  JavaScript
+   <ul>
+    <li>Vue</li>
+    <li>VueRouter</li>
+    <li>VueStore</li>
+    <li>JavaScript</li>
+</ul>
   
 # Postgres Data Base
   
