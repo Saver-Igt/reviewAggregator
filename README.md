@@ -1,14 +1,23 @@
-# reviewAggregator
+<h1 align="center"> Review Agregator </h1>
+
 <p>Pet-проект на Spring + Vue. База данных - Postgres</p>
+
 <h1 align="center">Demo<h1>
+  
 <a href="https://review-agregator-production.up.railway.app" target="_blank">Посмотреть</a>
+  
 <img src="https://github.com/Saver-Igt/reviewAggregator/demo.png">
 
 # Installation
+  
 `mvn clean install`
+  
 # Postgres Data Base
+  
 ## Tables:
+  
 ### games
+  
 | Name         | Type   | Constraints                        |
 | ----------   | ------ | ---------------------------------- |
 | `id`         | bigint | NOT NULL, Primary key              |
@@ -16,7 +25,9 @@
 | `description`| varchar|                                    |
 | `avg_rate`   | integer|                                    |
 | `icon_url`   | varchar|                                    |
+  
 ### usr
+  
 | Name         | Type   | Constraints                        |
 | ----------   | ------ | ---------------------------------- |
 | `id`         | bigint | NOT NULL, Primary key              |
@@ -28,7 +39,9 @@
 | `status`     | varchar|                                    |
 | `age`        | integer|                                    |
 | `gender`     | varchar|                                    |
+  
 ### reviews
+  
 | Name         | Type    | Constraints                        |
 | ----------   | ------  | ---------------------------------- |
 | `user_id`    | integer | NOT NULL, Primary key              |
