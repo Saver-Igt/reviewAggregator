@@ -12,6 +12,22 @@
   
 `mvn clean install`
   
+# Stack
+  
+## backend
+ 
+Java 8
+Spring Boot
+Spring Boot Data Jpa
+Spring Boot Security
+Postgres DataBase
+  
+## frontend
+  Vue
+  VueRouter
+  VueStore
+  JavaScript
+  
 # Postgres Data Base
   
 ## Tables:
