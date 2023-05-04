@@ -16,7 +16,14 @@
       </div>
     </div>
     <div v-else>
-      Pls login
+      <div class="container-xxl mt-5 mb-5">
+        <div class="mb-2 mt-2">
+
+        </div>
+        <div>
+          Pls login
+        </div>
+      </div>
     </div>
   </div>
 </template>

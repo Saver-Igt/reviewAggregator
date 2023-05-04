@@ -20,6 +20,7 @@
             </li>
             <li class="nav-item m-2">
               <button class="nav-link" data-bs-toggle="tab"
+                      v-bind:disabled="!username"
                       @click="$router.push({name:'reviews'})">
                 Your reviews
               </button>
@@ -36,7 +37,9 @@
           </ul>
           <form class="d-flex m-2" role="search">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-primary" type="submit">Find</button>
+            <button class="btn btn-primary" type="submit">Find
+              <i class="fas fa-search"></i>
+            </button>
           </form>
           <!--For login -->
           <button type="button" class="btn btn-primary m-2" v-if="!username"
@@ -70,6 +73,9 @@ export default{
   computed:{
     username(){
       return this.$store.getters['authModule/getUsername'];
+    },
+    games(){
+      return this.$store.getters['gamesModule/getGame'];
     }
   },
   methods:{

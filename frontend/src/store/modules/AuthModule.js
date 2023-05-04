@@ -1,6 +1,4 @@
-import {AuthAPI} from "@/index";
 import {DefaultAPIInstance} from "@/AuthAPI";
-
 export default {
     namespaced: true,
     state(){
@@ -47,13 +45,11 @@ export default {
         }
     },
     actions:{
-        onLogin({commit}, {username, password}){
-            AuthAPI.login(username,password).then((res) => {
-                    commit('SET_TOKEN', res.data.token);
-                    commit('SET_USERNAME', res.data.username);
-                    commit('SET_USER_ID', res.data.userId)
-                    DefaultAPIInstance.defaults.headers['authorization'] = `Bearer ${res.token}`;
-                })
+        onLogin({commit}, {res}){
+                commit('SET_TOKEN', res.data.token);
+                commit('SET_USERNAME', res.data.username);
+                commit('SET_USER_ID', res.data.userId);
+                DefaultAPIInstance.defaults.headers['authorization'] = `Bearer ${res.token}`;
         },
         onLogout({commit}){
             commit('DELETE_USERNAME');

@@ -3,7 +3,15 @@
     <h2>Reviews</h2>
     <div>
       <template v-if="isReviewsEmpty">
-        <p>There are not reviews yet. Be first!</p>
+        <div class="mt-5 mb-5 row">
+          <div class="col-5">
+            <img src="../assets/empty.png" class="rounded img-fluid" width="450" height="300">
+          </div>
+         <div class="col">
+           <h3 class="mb-4">There doesn't seem to be any reviews here.</h3>
+           <h4>Write your review first!</h4>
+         </div>
+        </div>
       </template>
       <div v-else>
         <ul class="ps-0 mt-4" v-if="this.reviews">

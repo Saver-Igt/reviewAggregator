@@ -26,7 +26,7 @@
             <div class="row align-items-center">
               <div class="col-7">
                 <h1>Welcome to Review Aggregator!</h1>
-                <h2 class="mt-4">Hello user! This is the place where you can share your opinion about the games and read the opinions of others.</h2>
+                <h2 class="mt-4">Hello user. This is the place where you can share your opinion about the games and read the opinions of others.</h2>
               </div>
               <div class="col-5">
                 <img class="w-100 h-200" src="../assets/logo.png" alt="">
@@ -52,7 +52,9 @@
             <div class="row align-items-center">
               <div class="col-7">
                 <h1>Welcome to Review Aggregator!</h1>
-                <h2 class="mt-4">Hello user! This is the place where you can share your opinion about the games and read the opinions of others.</h2>
+                <h2 class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  A perspiciatis voluptates, praesentium earum iure corrupti aliquam suscipit fuga reiciendis voluptas laudantium dolorem laborum, recusandae ad.
+                  Maiores cumque molestias assumenda laborum.</h2>
               </div>
               <div class="col-5">
                 <img class="w-100 img-fluid" src="../assets/img3.jpg" alt="">

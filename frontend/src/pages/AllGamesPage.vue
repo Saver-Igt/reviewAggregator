@@ -10,8 +10,8 @@
                  height="500"
                  class="img-fluid"/>
             <div class="card-body">
-              <h5 class="card-title mb-4 gameName">{{game.name}}</h5>
-              <p>{{game.avgRate}}</p>
+              <h5 class="card-title gameName">{{game.name}}</h5>
+              <h5 class="card-body">Average rating: {{game.avgRate}}</h5>
               <a href="" class="btn btn-primary" @click="redirectToGamePage(game.id)">Go</a>
             </div>
           </div>

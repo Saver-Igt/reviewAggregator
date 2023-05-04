@@ -1,8 +1,8 @@
 package dev.siraev.models;
 
 public enum Permission {
-    DEVELOPERS_READ("developers:read"),
-    DEVELOPERS_WRITE("developers:write");
+    GAMES_READ("games:read"),
+    GAMES_WRITE("games:write");
 
     private final String permission;
 

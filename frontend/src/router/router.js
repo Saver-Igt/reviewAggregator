@@ -7,13 +7,29 @@ import AllGamesPage from "@/pages/AllGamesPage.vue";
 import Profile from "@/pages/Profile.vue";
 import NotFound from "@/pages/NotFound.vue";
 import registrationPage from "@/pages/RegistrationPage.vue";
-//import store from "@/store";
+import forbiddenPage from '@/pages/403page.vue';
+
+const noAuthGuard = function (to, from, next){
+    const isAuthorized = localStorage.getItem('token');
+    if(isAuthorized) next({name: 'forbidden'});
+    else next();
+}
+const authGuard = function (to, from, next){
+    const isAuthorized = localStorage.getItem('token');
+    if(!isAuthorized) next({name: 'forbidden'});
+    else next();
+}
 
 const routes = [
     {
         path: '/',
         name: 'mainPage',
         component: MainPage
+    },
+    {
+        path: '/403',
+        name: 'forbidden',
+        component: forbiddenPage
     },
     {
         path: '/games',
@@ -29,7 +45,8 @@ const routes = [
     {
         path: '/reviews',
         name: 'reviews',
-        component: ReviewsPage
+        component: ReviewsPage,
+        beforeEnter: authGuard
     },
     {
         path: '/faq',
@@ -39,12 +56,14 @@ const routes = [
     {
         path: '/profile',
         name: 'profile',
-        component: Profile
+        component: Profile,
+        beforeEnter: authGuard
     },
     {
         path: '/registration',
         name: 'registration',
-        component: registrationPage
+        component: registrationPage,
+        beforeEnter: noAuthGuard
     },
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', component: NotFound }
@@ -53,14 +72,5 @@ const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes
 });
-/*
-router.beforeEach((to, from,next) => {
-    if(!store.getters['authModule/getUserId'] && to.name==='games'){
-        next({name: 'login'})
-    }else {
-        next();
-    }
-});
 
- */
 export default router;

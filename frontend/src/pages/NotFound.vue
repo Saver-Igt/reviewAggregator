@@ -1,5 +1,5 @@
 <template>
-  <div class="not-found container-xxl mt-5 mb-5 ">
+  <div class="not-found container-xxl mt-5 mb-5">
     <img src="../assets/map.png" class="rounded mx-auto d-block img-fluid">
     <h1 class="head text-center fw-bold text-danger">404</h1>
     <h2 class="text-center fs-2 fw-bold">NOT FOUND</h2>
