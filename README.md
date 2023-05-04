@@ -6,7 +6,7 @@
   
 <a href="https://review-agregator-production.up.railway.app" target="_blank">Посмотреть</a>
   
-<img src="https://github.com/Saver-Igt/reviewAggregator/demo.png">
+<img src="https://github.com/Saver-Igt/reviewAggregator/blob/main/demo.png">
 
 # Installation
   
