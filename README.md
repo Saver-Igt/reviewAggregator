@@ -4,7 +4,7 @@
 
 <h1 align="center">Demo<h1>
   
-<a href="https://review-agregator-production.up.railway.app" target="_blank">Посмотреть</a>
+<a href="https://review-agregator-production.up.railway.app" target="_blank">First Demo version on railway</a>
   
 <img src="https://github.com/Saver-Igt/reviewAggregator/blob/main/demo.png">
 
