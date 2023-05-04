@@ -30,6 +30,7 @@
     <li>VueRouter</li>
     <li>VueStore</li>
     <li>JavaScript</li>
+    <li>Bootstrap</li>
 </ul>
   
 # Postgres Data Base
