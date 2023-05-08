@@ -1,21 +1,24 @@
 <template>
   <div class="container-xxl">
-    <section >
-      <div class="row" v-if="userIdIsExists">
-        <div class="col-3">
-          <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o=" class="rounded-circle" style="width: 150px;"
-               alt="Avatar" />
+    <section style="min-height: 1000px">
+      <div class="mt-lg-5" v-if="userIdIsExists">
+        <div class="row">
+          <div class="col-sm-3">
+            <img src="https://media.istockphoto.com/id/1300845620/vector/user-icon-flat-isolated-on-white-background-user-symbol-vector-illustration.jpg?s=612x612&w=0&k=20&c=yBeyba0hUkh14_jgv1OKqIH0CCSWU_4ckRkAoy2p73o="
+                 class="rounded-circle img-fluid"
+                 alt="Avatar">
+          </div>
+          <div class="col-sm-9 mt-5">
+            <h2>Username: {{user.username}}</h2>
+            <h4>First Name: {{user.firstName}}</h4>
+            <h4>Last Name: {{user.lastName}}</h4>
+            <h4>Role: {{user.role}}</h4>
+            <h4>Age: {{user.age}}</h4>
+            <h4>Gender: {{user.gender}}</h4>
+          </div>
         </div>
-        <div class="col-3">
-          <p>Username: {{user.username}}</p>
-          <p>First Name: {{user.firstName}}</p>
-          <p>Last Name: {{user.lastName}}</p>
-          <p>Role: {{user.role}}</p>
-          <p>Age: {{user.age}}</p>
-          <p>Gender: {{user.gender}}</p>
-        </div>
-        <div>
-          <button class="btn btn-danger " type="button" @click="logout">
+        <div class="ms-sm-2 ms-lg-5 mt-5">
+          <button class="btn btn-danger" type="button" @click="logout">
             <div class="row">
               <div class="col-3">
                 <svg class="bi" width="30" height="30" fill="currentColor">

@@ -1,16 +1,17 @@
 <template>
   <div class="container-xxl" v-if="getReviews">
     <div v-if="getAuth">
-      <h1 class="mt-5">There are your reviews</h1>
       <div v-for="review in getReviews" :key="review.userId">
-        <div class="row shadow mb-3 mt-3 review-item" @click="openGamePage(review.gameId)">
-          <div class="col-3 mb-2 mt-2">
-            <img :src="require('../' + review.game.iconURL)" width="300" height="200" class="shadow"/>
-          </div>
-          <div class="col">
-            <h3 class="mt-3">{{review.game.name}}</h3>
-            <h4 class="mt-3" :style="getColor(review)">score: {{review.score}}</h4>
-            <h5>comment: {{review.comment}}</h5>
+        <div class="shadow mb-3 mt-3 review-item" @click="openGamePage(review.gameId)">
+          <div class="row">
+            <div class="col-sm-4 mb-2 mt-2">
+              <img :src="require('../' + review.game.iconURL)" height="200" class="shadow img-fluid"/>
+            </div>
+            <div class="col-sm-8">
+              <h3 class="mt-3">{{review.game.name}}</h3>
+              <h4 class="mt-3" :style="getColor(review)">score: {{review.score}}</h4>
+              <h5>comment: {{review.comment}}</h5>
+            </div>
           </div>
         </div>
       </div>
@@ -18,7 +19,6 @@
     <div v-else>
       <div class="container-xxl mt-5 mb-5">
         <div class="mb-2 mt-2">
-
         </div>
         <div>
           Pls login

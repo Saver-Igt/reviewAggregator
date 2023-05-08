@@ -4,14 +4,14 @@
       <div v-if="game">
         <section>
           <div class="row">
-            <div class="col game_icon">
+            <div class="col-sm-4 game_icon">
               <img :src="require('../' + game.iconURL)"
                    width="700"
                    height="500"
                    class="img-fluid"/>
             </div>
-            <div class="col">
-              <h2>{{game.name}}</h2>
+            <div class="col-sm-8">
+              <h2 class="mt-5 mt-lg-0">{{game.name}}</h2>
               <p>Average rating: {{game.avgRate}}</p>
               <p>Description: </p>
               <p>{{game.description}}</p>
@@ -48,12 +48,12 @@
               <div class="card">
                 <div class="card-body">
                   <div class="row">
-                    <div class="col-1 text-center mt-2">
+                    <div class="col-4 col-lg-1 text-center mt-2">
                       <svg class="bi" width="75" height="75" fill="currentColor">
                         <use xlink:href="../assets/bootstrap-icons.svg#person-fill"/>
                       </svg>
                     </div>
-                    <div class="col-10">
+                    <div class="col-8 col-lg-10">
                       <h4 class="card-title"></h4>
                       <div class="fs-4  mb-2">Score: {{getReview.score}}</div>
                       <div class="fs-5 ">Comment: {{getReview.comment}}</div>
