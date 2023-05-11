@@ -8,7 +8,8 @@
               <img :src="require('../' + game.iconURL)"
                    width="700"
                    height="500"
-                   class="img-fluid"/>
+                   class="img-fluid mb-5"
+                   />
             </div>
             <div class="col-sm-8">
               <h2 class="mt-5 mt-lg-0">{{game.name}}</h2>
@@ -22,6 +23,7 @@
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, aut ea corporis nam porro, eum odit error
                 nobis adipisci dolore in ullam sapiente ipsam ipsum pariatur nemo ratione corrupti culpa.</p>
             </div>
+
           </div>
         </section>
         <section>
@@ -70,6 +72,10 @@
         <section>
           <Reviews v-bind:gameId = game.id />
         </section>
+        <div v-if="steam">
+          aa{{steam.type}}
+          aa{{steam.name}}
+        </div>
       </div>
     </div>
     <!--Change Modal -->
@@ -107,6 +113,8 @@
 <script>
 import Reviews from "@/components/Reviews.vue";
 import logInPls from "@/components/logInPls.vue";
+import axios from "axios";
+
 export default {
   name: 'GamePage',
   components:{
@@ -116,6 +124,7 @@ export default {
   props: ['id'],
   data(){
     return{
+      steamInfo:null,
       review:{
         userId:null,
         gameId:null,
@@ -125,6 +134,18 @@ export default {
     }
   },
   methods:{
+    async loadSteamInfo(appid){
+      try {
+        await axios.get('/api/steam/' + appid)
+            .then(response =>{
+              console.log('@',response.data.data)
+              this.steamInfo = response.data;
+              return response.data.data
+            })
+      }catch (e){
+        console.error(e)
+      }
+    },
     publishReview() {
       this.setGameAndUserId();
       this.$store.dispatch('reviewsModule/addReview', this.review);
@@ -144,6 +165,9 @@ export default {
     }
   },
   computed:{
+    steam(){
+      return this.loadSteamInfo(this.game.steam_appid)
+    },
     game(){
       return this.$store.getters['gamesModule/getGame'](parseInt(this.id))
     },

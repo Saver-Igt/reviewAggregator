@@ -1,6 +1,6 @@
 <template>
   <div class="allGamesPage container-xxl">
-    <section>
+    <section v-if="games">
       <h1 class="mb-4 ms-3">All games</h1>
       <div class="row">
         <div class="col-sm-4 mb-4" v-for="game in games" :key="game.Id">
@@ -26,7 +26,7 @@ export default {
   name: 'AllGamesPage',
   data(){
     return{
-      games:null
+
     }
   },
   methods:{
@@ -37,9 +37,11 @@ export default {
       })
     }
   },
-  mounted() {
-    this.games = this.$store.getters['gamesModule/getGames']
-  }
+  computed:{
+    games(){
+      return this.$store.getters['gamesModule/getGames']
+    }
+  },
 }
 </script>
 <style>

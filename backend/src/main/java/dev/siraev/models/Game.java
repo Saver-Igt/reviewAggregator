@@ -25,6 +25,9 @@ public class Game {
     @Column(name = "icon_url")
     @JsonView(Views.Review.class)
     private String iconURL;
+    @Column(name = "steam_appid")
+    private Long steam_appid;
+
     public Game(){}
     public Game(Long id, String name, String description, int avgRate, String iconURL) {
         this.id = id;
@@ -62,5 +65,11 @@ public class Game {
     }
     public void setIconURL(String iconURL) {
         this.iconURL = iconURL;
+    }
+    public Long getSteam_appid() {
+        return steam_appid;
+    }
+    public void setSteam_appid(Long steam_appid) {
+        this.steam_appid = steam_appid;
     }
 }

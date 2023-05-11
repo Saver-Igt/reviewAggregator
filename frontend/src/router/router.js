@@ -8,6 +8,7 @@ import Profile from "@/pages/Profile.vue";
 import NotFound from "@/pages/NotFound.vue";
 import registrationPage from "@/pages/RegistrationPage.vue";
 import forbiddenPage from '@/pages/403page.vue';
+import steamGamePage from "@/pages/SteamGamePage.vue";
 
 const noAuthGuard = function (to, from, next){
     const isAuthorized = localStorage.getItem('token');
@@ -25,6 +26,11 @@ const routes = [
         path: '/',
         name: 'mainPage',
         component: MainPage
+    },
+    {
+        path: '/steam',
+        name: 'steamGamePage',
+        component: steamGamePage
     },
     {
         path: '/403',
