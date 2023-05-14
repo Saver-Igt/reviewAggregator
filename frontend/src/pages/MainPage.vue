@@ -5,7 +5,7 @@
     </section>
     <div class="container-xxl">
       <section>
-        <Slider title="Best games"/>
+        <Slider title="Best games" sliderType="gameData" :data="sortedGames"/>
       </section>
     </div>
   </div>
@@ -19,6 +19,11 @@ export default{
   components:{
     Carusel,
     Slider
+  },
+  computed:{
+    sortedGames() {
+      return this.$store.getters['gamesModule/getSortedGames']
+    }
   }
 }
 </script>

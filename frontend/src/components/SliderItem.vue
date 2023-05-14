@@ -1,19 +1,21 @@
 <template>
   <div class="slider-item">
-    <a href="" class="game_card_icon" @click="redirectToGamePage">
-      <div>
-        <img :src="require('../' + game_data.iconURL)" width="200" height="200" />
+    <a href="##" class="game_card_icon" @click="doAction">
+      <div v-if="sliderType == 'gameData'">
+        <img  :src="require('../' + item.iconURL)" width="200" height="200" />
+      </div>
+      <div v-else>
+        <img :src="item.path_thumbnail" width="200" height="200" />
       </div>
     </a>
-    <div class = "game-card-details">
-      <h2 :title=game_data.name>
-        {{ game_data.name}}
+    <div class = "game-card-details" v-if="sliderType == 'gameData' ">
+      <h2 :title=item.name>
+        {{ item.name}}
       </h2>
       <p class = "avg-rating" :style="ratingColor">
-        {{ game_data.avgRate}}
+        {{ item.avgRate}}
       </p>
     </div>
-
   </div>
 </template>
 
@@ -21,12 +23,8 @@
 export default{
   name: 'vGameCard',
   props:{
-    game_data:{
-      type: Object,
-      default(){
-        return{}
-      }
-    }
+    item:{},
+    sliderType: String
   },
   data(){
     return{
@@ -36,20 +34,26 @@ export default{
     }
   },
   methods:{
-    redirectToGamePage(){
-      this.$router.push({
-        name: 'game',
-        params: {id: this.game_data.id}
-      })
+    doAction(){
+      if(this.sliderType == 'gameData'){
+        this.$router.push({
+          name: 'game',
+          params: {id: this.item.id}
+        })
+      }else if(this.sliderType == 'screenshots'){
+        window.open(this.item.path_full, '_blank', 'noreferrer');
+      }
     }
   },
   created() {
-    if (this.game_data.avgRate < 30){
-      this.ratingColor.color = "red"
-    } else if (this.game_data.avgRate > 75){
-      this.ratingColor.color = "green"
-    }else {
-      this.ratingColor.color = "yellow"
+    if(this.sliderType == 'gameData'){
+      if (this.item.avgRate < 30){
+        this.ratingColor.color = "red"
+      } else if (this.item.avgRate > 75){
+        this.ratingColor.color = "green"
+      }else {
+        this.ratingColor.color = "yellow"
+      }
     }
   }
 }

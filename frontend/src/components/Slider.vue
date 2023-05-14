@@ -1,9 +1,9 @@
 <template>
   <div class="slider">
     <div class="container-xxl">
-      <h2 class="mb-4">{{title}}</h2>
+      <h2 class="mb-4" v-if="title">{{title}}</h2>
       <button
-          class="btn btn-primary arrow me-2"
+          class="btn btn-outline-primary arrow me-2"
           id="slide-left"
           @click="swipeLeft">
           <span aria-hidden="true">
@@ -13,7 +13,7 @@
           </span>
       </button>
       <button
-          class="btn btn-primary arrow me-2"
+          class="btn btn-outline-primary arrow me-2"
           id="slide-right"
           @click="swipeRight">
           <span aria-hidden="true">
@@ -24,15 +24,15 @@
       </button>
     </div>
 
-    <div class="slide-container">
-      <div class="slide-container" id="content" ref="content" v-if="games">
+      <div class="slide-container" id="content" ref="content" v-if="data">
         <vSliderItem
-            v-for="game in sortedGames"
-            :key="game.id"
-            :game_data="game"
+            v-for="item in data"
+            :key="item.id"
+            :slider-type="sliderType"
+            :item="item"
         />
       </div>
-    </div>
+
   </div>
 </template>
 <script>
@@ -42,12 +42,15 @@ export default{
   components:{
     vSliderItem,
   },
-  props: {
-    title: String
-  },
   data(){
     return{
+      imageUrl:null,
     }
+  },
+  props: {
+    sliderType: String,
+    title: String,
+    data: {},
   },
   methods: {
     /**
@@ -94,15 +97,7 @@ export default{
     swipeRight() {
       const content = this.$refs.content;
       this.scrollTo(content, 310, 800);
-    }
-  },
-  computed:{
-    sortedGames() {
-      return this.$store.getters['gamesModule/getSortedGames']
     },
-    games(){
-      return this.$store.getters['gamesModule/getGames'];
-    }
   },
 }
 </script>
@@ -138,5 +133,10 @@ section .slide-container::-webkit-scrollbar-thumb{
   background: -webkit-linear-gradient(left,  var(--color1) 0%,var(--color2) 100%);
   background: linear-gradient(to right,  var(--color1) 0%,var(--color2) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=var(--color1), endColorstr=var(--color2),GradientType=1 );
+}
+.full-screen{
+  #background: #1d2aa1;
+  width: 100%;
+  height: 100%;
 }
 </style>

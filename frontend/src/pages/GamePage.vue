@@ -2,30 +2,33 @@
   <div>
     <div class="gamePage container-xxl">
       <div v-if="game">
-        <section>
-          <div class="row">
-            <div class="col-sm-4 game_icon">
-              <img :src="require('../' + game.iconURL)"
-                   width="700"
-                   height="500"
-                   class="img-fluid mb-5"
-                   />
+        <div class="mt-5 row switchers rounded-top rounded-bottom">
+            <div class="col text-center fs-2 pb-1"
+                 v-bind:class="[!displaySteamInfo ? 'act' : 'noAct']"
+                 @click="displaySteamInfo = false">
+              Default
             </div>
-            <div class="col-sm-8">
-              <h2 class="mt-5 mt-lg-0">{{game.name}}</h2>
-              <p>Average rating: {{game.avgRate}}</p>
-              <p>Description: </p>
-              <p>{{game.description}}</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, aut ea corporis nam porro, eum odit error
-                nobis adipisci dolore in ullam sapiente ipsam ipsum pariatur nemo ratione corrupti culpa.</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, aut ea corporis nam porro, eum odit error
-                nobis adipisci dolore in ullam sapiente ipsam ipsum pariatur nemo ratione corrupti culpa.</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est, aut ea corporis nam porro, eum odit error
-                nobis adipisci dolore in ullam sapiente ipsam ipsum pariatur nemo ratione corrupti culpa.</p>
+            <div class="col text-center fs-2 pb-1"
+                 v-bind:class="[displaySteamInfo ? 'act' : 'noAct']"
+                 @click="loadSteamInfo(game.steam_appid)"
+                 v-bind:disabled="!game.steam_appid">
+              <svg class="bi" width="32" height="32"
+                   v-bind:fill="[displaySteamInfo ? 'white' : 'black']">
+                <use xlink:href="../assets/bootstrap-icons.svg#steam"/>
+              </svg>
+              Steam
             </div>
-
-          </div>
-        </section>
+        <div class="gameInfo-border-wrap">
+            <div class="gameInfo">
+              <div v-if="!displaySteamInfo">
+                <default-game :game="game"/>
+              </div>
+              <div v-if="displaySteamInfo">
+                <steam-game :steam-data="steamInfo"/>
+              </div>
+            </div>
+        </div>
+        </div>
         <section>
           <h2>Your review</h2>
           <section v-if="isUserAuth && !alreadyReviewed">
@@ -72,11 +75,7 @@
         <section>
           <Reviews v-bind:gameId = game.id />
         </section>
-        <div v-if="steam">
-          aa{{steam.type}}
-          aa{{steam.name}}
-        </div>
-      </div>
+    </div>
     </div>
     <!--Change Modal -->
     <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -109,22 +108,25 @@
     </div>
   </div>
 </template>
-
 <script>
 import Reviews from "@/components/Reviews.vue";
 import logInPls from "@/components/logInPls.vue";
+import defaultGame from "@/pages/DefaultGame.vue";
+import steamGame from "@/pages/SteamGame.vue";
 import axios from "axios";
-
 export default {
   name: 'GamePage',
   components:{
     Reviews,
-    logInPls
+    logInPls,
+    defaultGame,
+    steamGame
   },
   props: ['id'],
   data(){
     return{
-      steamInfo:null,
+      displaySteamInfo:false,
+      steamInfo:{},
       review:{
         userId:null,
         gameId:null,
@@ -135,16 +137,15 @@ export default {
   },
   methods:{
     async loadSteamInfo(appid){
-      try {
-        await axios.get('/api/steam/' + appid)
-            .then(response =>{
-              console.log('@',response.data.data)
-              this.steamInfo = response.data;
-              return response.data.data
-            })
-      }catch (e){
-        console.error(e)
-      }
+        try {
+          await axios.get('/api/steam/' + appid)
+              .then(response =>{
+                this.steamInfo = response.data;
+                this.displaySteamInfo = true;
+              })
+        }catch (e){
+          console.error(e)
+        }
     },
     publishReview() {
       this.setGameAndUserId();
@@ -165,11 +166,8 @@ export default {
     }
   },
   computed:{
-    steam(){
-      return this.loadSteamInfo(this.game.steam_appid)
-    },
     game(){
-      return this.$store.getters['gamesModule/getGame'](parseInt(this.id))
+      return this.$store.getters['gamesModule/getGame'](parseInt(this.id));
     },
     isUserAuth(){
       if(this.$store.getters['authModule/getUsername']){
@@ -202,9 +200,6 @@ export default {
 }
 </script>
 <style scoped>
-.col img{
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 .review-item{
   border-radius:7px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -215,5 +210,27 @@ export default {
 }
 .review-item:hover {
   transform: scale(1.05);
+}
+.gameInfo-border-wrap {
+  border-radius: 0% 0% 1% 1%;
+  position: relative;
+  background: linear-gradient(to right,  var(--color1) 0%,var(--color2) 100%);
+  padding: 4px;
+}
+.gameInfo {
+  border-radius: 0% 0% 1% 1%;
+  background: white;
+  padding: 2rem;
+}
+.switchers{
+  background: linear-gradient(to right,  var(--color1) 0%,var(--color2) 100%);
+}
+.act{
+  background: transparent;
+  color: white;
+}
+.noAct{
+  background: white;
+  color: black;
 }
 </style>
