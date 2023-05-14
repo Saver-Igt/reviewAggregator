@@ -49,7 +49,7 @@ export default {
                 commit('SET_TOKEN', res.data.token);
                 commit('SET_USERNAME', res.data.username);
                 commit('SET_USER_ID', res.data.userId);
-                DefaultAPIInstance.defaults.headers['authorization'] = `Bearer ${res.token}`;
+                DefaultAPIInstance.defaults.headers['authorization'] = `${res.data.token}`;
         },
         onLogout({commit}){
             commit('DELETE_USERNAME');

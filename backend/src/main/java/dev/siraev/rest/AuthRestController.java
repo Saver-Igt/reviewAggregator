@@ -75,12 +75,12 @@ public class AuthRestController {
     }
     @GetMapping("/users")
     @JsonView(Views.UserView.class)
-    public @ResponseBody List<User> getUsers() throws Exception{
+    public List<User> getUsers() throws Exception{
         return userRepository.findAll();
     }
     @GetMapping("/users/{id}")
     @JsonView(Views.UserView.class)
-    public @ResponseBody User getUser(@PathVariable Long id) throws Exception{
+    public User getUser(@PathVariable Long id) throws Exception{
         return userRepository.findById(id).orElse(new User());
     }
 }

@@ -9,5 +9,9 @@ export const AuthAPI ={
     logout(){
         const url = '/api/auth/logout';
         return DefaultAPIInstance.post(url);
+    },
+    getUserInfo(id){
+        const url = '/api/users/'+id;
+        return DefaultAPIInstance.get(url);
     }
 }

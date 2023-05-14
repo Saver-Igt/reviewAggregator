@@ -43,7 +43,7 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import {AuthAPI} from "@/index";
 export default {
   name: 'ProfilePage',
   data(){
@@ -64,12 +64,13 @@ export default {
   methods:{
     async loadUser(userid){
       try {
-        await axios.get('api/users/' + userid)
-            .then(response =>{
-              this.user = response.data
-            })
+        await AuthAPI.getUserInfo(userid).then(response => {
+          this.user = response.data
+        }).catch (error =>{
+          console.error(error);
+        })
       }catch (error){
-        console.error(error)
+        console.log(error);
       }
     },
     logout() {
