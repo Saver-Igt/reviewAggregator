@@ -1,6 +1,11 @@
-package dev.siraev.models;
+package dev.siraev.models.user;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import dev.siraev.models.Views;
+import dev.siraev.models.user.Gender;
+import dev.siraev.models.user.Role;
+import dev.siraev.models.user.Status;
+
 import javax.persistence.*;
 @Entity
 @Table(name = "usr")

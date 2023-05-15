@@ -51,13 +51,15 @@
           <div class="container-xxl">
             <div class="row align-items-center">
               <div class="col-sm-6">
-                <h2>Welcome to Review Aggregator!</h2>
-                <h3 class="mt-4">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  A perspiciatis voluptates, praesentium earum iure corrupti aliquam suscipit fuga reiciendis voluptas laudantium dolorem laborum, recusandae ad.
-                  Maiores cumque molestias assumenda laborum.</h3>
+                <h2>Interaction with Steam</h2>
+                <h3 class="mt-4">
+                  Valve's digital distribution service Steam is becoming more and more popular among gamers.
+                  On our site you can see information about the game from Steam.
+                  In the future, it is also planned to add the ability to connect your account to your Steam account in order to see a list of your games and reviews on them.</h3>
+                <h5 class="mb-5 text-danger">* Information about some games may not be displayed because they are not in Steam or the publisher or developer has blocked access to the game in your region</h5>
               </div>
               <div class="col-sm-6">
-                <img class="w-100 img-fluid" src="../assets/img3.jpg" alt="">
+                <img class="img-fluid" src="../assets/steam.png" alt="">
               </div>
             </div>
           </div>

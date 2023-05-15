@@ -1,6 +1,6 @@
 package dev.siraev.security;
 
-import dev.siraev.models.User;
+import dev.siraev.models.user.User;
 import dev.siraev.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

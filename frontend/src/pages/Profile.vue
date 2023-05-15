@@ -30,6 +30,9 @@
               </div>
             </div>
           </button>
+          <button class="btn btn-primary ms-5" v-if="user.role == 'ADMIN'">
+              <h4>Add game</h4>
+          </button>
         </div>
       </div>
       <section v-else>

@@ -1,6 +1,6 @@
 <template>
   <div class="slider">
-    <div class="container-xxl">
+    <div class="">
       <h2 class="mb-4" v-if="title">{{title}}</h2>
       <button
           class="btn btn-outline-primary arrow me-2"

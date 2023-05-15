@@ -1,6 +1,6 @@
 package dev.siraev.security;
-import dev.siraev.models.Status;
-import dev.siraev.models.User;
+import dev.siraev.models.user.Status;
+import dev.siraev.models.user.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

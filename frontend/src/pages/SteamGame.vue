@@ -1,6 +1,6 @@
 <template>
-  <div class="container-xxl">
-    <div v-if="steamData.success" class="tv">
+  <div>
+    <div v-if="steamData.success">
       <div class="row mt-4 ms-3">
         <div class="col-sm-4">
           <img :src="steamData.data.header_image" class="img-fluid">
@@ -17,11 +17,11 @@
         </div>
       </div>
       <div class="row ms-4">
-        <section>
+        <section class="ps-0">
           <slider title="Screenshots" sliderType="screenshots" :data="steamData.data.screenshots"/>
         </section>
-        <h4 class="mt-3">Description:</h4>
-        <div v-html="steamData.data.detailed_description"></div>
+        <h4 class="mt-3 ps-0">Description:</h4>
+        <div class="ps-0" id="dsc" v-html="steamData.data.detailed_description"></div>
         <div>
           <h4 class="mt-3">Supported languages:</h4>
           <div v-html="steamData.data.supported_languages"></div>
@@ -41,8 +41,9 @@
         </div>
       </div>
     </div>
-    <div v-else>
-      <h2>No info </h2>
+
+    <div v-else class="row">
+      <img src="../assets/shit_corporation.png" class="img-fluid">
     </div>
   </div>
 </template>
@@ -52,8 +53,25 @@ export default {
   components:{
     slider
   },
+  mounted() {
+    if(this.steamData.success){
+      const myElement = document.getElementById("dsc");
+      const imgs = myElement.getElementsByTagName('img');
+      const links = myElement.getElementsByTagName('a');
+      [...imgs].forEach((img) => {
+        img.classList.add("img-fluid");
+      });
+
+      [...links].forEach((link) => {
+        link.classList.add("textOverflow");
+      });
+    }
+  },
   props:['steamData'],
 }
 </script>
 <style>
+.textOverflow{
+  word-wrap:break-word;
+}
 </style>

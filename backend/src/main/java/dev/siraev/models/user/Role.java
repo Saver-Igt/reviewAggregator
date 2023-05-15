@@ -1,5 +1,6 @@
-package dev.siraev.models;
+package dev.siraev.models.user;
 
+import dev.siraev.models.user.Permission;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Set;

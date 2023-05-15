@@ -1,6 +1,7 @@
 package dev.siraev.models;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import dev.siraev.models.user.User;
 
 import javax.persistence.*;
 

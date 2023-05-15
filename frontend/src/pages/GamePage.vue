@@ -1,23 +1,20 @@
 <template>
   <div>
-    <div class="gamePage container-xxl">
-      <div v-if="game">
+    <div class="gamePage container-xxl" v-if="game">
         <div class="mt-5 row switchers rounded-top rounded-bottom">
-            <div class="col text-center fs-2 pb-1"
-                 v-bind:class="[!displaySteamInfo ? 'act' : 'noAct']"
-                 @click="displaySteamInfo = false">
-              Default
-            </div>
-            <div class="col text-center fs-2 pb-1"
-                 v-bind:class="[displaySteamInfo ? 'act' : 'noAct']"
-                 @click="loadSteamInfo(game.steam_appid)"
-                 v-bind:disabled="!game.steam_appid">
-              <svg class="bi" width="32" height="32"
-                   v-bind:fill="[displaySteamInfo ? 'white' : 'black']">
-                <use xlink:href="../assets/bootstrap-icons.svg#steam"/>
-              </svg>
-              Steam
-            </div>
+          <div class="col text-center fs-2 pb-1"
+               v-bind:class="[!displaySteamInfo ? 'act' : 'noAct']"
+               @click="displaySteamInfo = false">
+            Default
+          </div>
+          <div class="col text-center fs-2 pb-1"
+               v-bind:class="[displaySteamInfo ? 'act' : 'noAct']"
+               @click="loadSteamInfo(this.game.steam_appid)"
+               v-bind:disabled="!game.steam_appid">
+            <svg class="bi" width="32" height="32" v-bind:fill="[displaySteamInfo ? 'white' : 'black']">
+              <use xlink:href="../assets/bootstrap-icons.svg#steam"/>
+            </svg>Steam
+          </div>
         <div class="gameInfo-border-wrap">
             <div class="gameInfo">
               <div v-if="!displaySteamInfo">
@@ -75,7 +72,6 @@
         <section>
           <Reviews v-bind:gameId = game.id />
         </section>
-    </div>
     </div>
     <!--Change Modal -->
     <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -220,7 +216,7 @@ export default {
 .gameInfo {
   border-radius: 0% 0% 1% 1%;
   background: white;
-  padding: 2rem;
+  padding: 1.5rem;
 }
 .switchers{
   background: linear-gradient(to right,  var(--color1) 0%,var(--color2) 100%);
@@ -232,5 +228,6 @@ export default {
 .noAct{
   background: white;
   color: black;
+  cursor: pointer;
 }
 </style>

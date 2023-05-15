@@ -2,6 +2,9 @@ package dev.siraev.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import dev.siraev.models.*;
+import dev.siraev.models.user.Role;
+import dev.siraev.models.user.Status;
+import dev.siraev.models.user.User;
 import dev.siraev.repository.UserRepository;
 import dev.siraev.security.JwtTokenProvider;
 import org.springframework.http.HttpStatus;
@@ -45,7 +48,8 @@ public class AuthRestController {
             }
             String token = jwtTokenProvider.createToken(request.getUsername(), user.getRole().name());
             Map<Object, Object> response = new HashMap<>();
-            response.put("userId", user.getId());
+            response.put("id", user.getId());
+            response.put("userRole", user.getRole().name());
             response.put("username", request.getUsername());
             response.put("token", token);
 
