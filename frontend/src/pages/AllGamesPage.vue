@@ -5,10 +5,8 @@
       <div class="row">
         <div class="col-sm-4 mb-4" v-for="game in games" :key="game.Id">
           <div class="card">
-            <img :src="require('../' + game.iconURL)"
-                 width="700"
-                 height="500"
-                 class="img-fluid"/>
+            <img :src="game.iconURL"
+                 class="img-fluid icon_url"/>
             <div class="card-body">
               <h5 class="card-title gameName">{{game.name}}</h5>
               <h5 class="card-body">Average rating: {{game.avgRate}}</h5>
@@ -49,5 +47,8 @@ export default {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+.icon_url{
+  object-fit: cover;
 }
 </style>

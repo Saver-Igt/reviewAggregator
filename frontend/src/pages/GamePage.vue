@@ -9,8 +9,7 @@
           </div>
           <div class="col text-center fs-2 pb-1"
                v-bind:class="[displaySteamInfo ? 'act' : 'noAct']"
-               @click="loadSteamInfo(this.game.steam_appid)"
-               v-bind:disabled="!game.steam_appid">
+               @click="loadSteamInfo(this.game.steam_appid)">
             <svg class="bi" width="32" height="32" v-bind:fill="[displaySteamInfo ? 'white' : 'black']">
               <use xlink:href="../assets/bootstrap-icons.svg#steam"/>
             </svg>Steam
@@ -126,7 +125,7 @@ export default {
       review:{
         userId:null,
         gameId:null,
-        score:null,
+        score: 5,
         comment:null,
       }
     }

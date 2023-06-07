@@ -2,6 +2,7 @@ package dev.siraev.rest;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import dev.siraev.models.*;
+import dev.siraev.models.user.AuthenticationRequestDTO;
 import dev.siraev.models.user.Role;
 import dev.siraev.models.user.Status;
 import dev.siraev.models.user.User;

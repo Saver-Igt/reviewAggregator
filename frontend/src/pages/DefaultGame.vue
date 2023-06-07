@@ -5,7 +5,7 @@
         <section>
           <div class="row">
             <div class="col-sm-4 game_icon">
-              <img :src="require('../' + game.iconURL)"
+              <img :src="game.iconURL"
                    width="700"
                    height="500"
                    class="img-fluid mb-5"

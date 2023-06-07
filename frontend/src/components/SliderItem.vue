@@ -2,7 +2,7 @@
   <div class="slider-item">
     <a href="##" class="game_card_icon" @click="doAction">
       <div v-if="sliderType == 'gameData'">
-        <img  :src="require('../' + item.iconURL)" width="200" height="200" />
+        <img  :src="item.iconURL" class="img-fluid"/>
       </div>
       <div v-else>
         <img :src="item.path_thumbnail" width="200" height="200" />

@@ -31,7 +31,7 @@
                       <div class="">Gender: {{review.user.gender}}</div>
                     </div>
                     <div class="col col-lg mt-2">
-                      <div class="badge bg-primary fs-5">{{review.score}}</div>
+                      <div class="badge bg-danger fs-5">{{review.score}}</div>
                       <p class="card-text fs-5">{{review.comment}}</p>
                     </div>
                   </div>
@@ -44,18 +44,11 @@
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'vReviews',
   props:{
     gameId: Number,
-  },
-  data(){
-    return{
-    }
-  },
-  methods:{
   },
   computed:{
     reviews() {
@@ -67,8 +60,17 @@ export default {
       }else {
         return true
       }
+    },
+    colorScore(review){
+      if(review.score > 8){
+        return "bg-success"
+      }else if(review.score < 2){
+        return "bg-danger"
+      }else{
+        return "bg-warning"
+      }
     }
-  },
+  }
 }
 </script>
 <style>

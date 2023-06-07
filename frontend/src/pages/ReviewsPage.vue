@@ -5,7 +5,7 @@
         <div class="shadow mb-3 mt-3 review-item" @click="openGamePage(review.gameId)">
           <div class="row">
             <div class="col-sm-4 mb-2 mt-2">
-              <img :src="require('../' + review.game.iconURL)" height="200" class="shadow img-fluid"/>
+              <img :src="review.game.iconURL" height="200" class="shadow img-fluid"/>
             </div>
             <div class="col-sm-8">
               <h3 class="mt-3">{{review.game.name}}</h3>
